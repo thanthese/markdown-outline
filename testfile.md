@@ -8,6 +8,10 @@ Some filler text
 
 More filler
 
+### Sub heading 3
+
+And the necessary text.
+
 ## Another heading 2
 
 And the last bit of filler
