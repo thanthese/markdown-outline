@@ -1,12 +1,15 @@
 " Things I need to be able to do
-" - Identify top and bottom of header block
-" - Set a fold programmatically
-" - Have the folds update somewhat automatically
+" - pretty foldtext
+" - learn all fold commands (for global vs local)
+" - move list indent in and out
 
 normal zE
 
 nmap <Tab> za
-nmap <S-Tab> zA
+nmap + zr
+nmap _ zm
+
+set foldcolumn=5
 
 function! RunTests()
 python << endpython
@@ -41,18 +44,18 @@ def findFoldRanges():
   for (line, depth) in headers:
     matches = filter(lambda (l, d): l > line and d <= depth, headers)
     if matches == []:
-      toReturn += [[line, 17]]
+      toReturn += [[line, fileLength]]
     else:
       toReturn += [[line, matches[0][0] - 1]]
   return toReturn
 
 def makeFold(foldRange):
   vim.command("%s,%sfold" % (foldRange[0], foldRange[1]))
-  vim.command("foldo")
+  vim.command("norm zR")
 
 def foldIt():
+  vim.command("norm zE")
   for foldRange in findFoldRanges():
-    print foldRange
     makeFold(foldRange)
 
 # tests
