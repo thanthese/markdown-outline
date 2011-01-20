@@ -3,6 +3,11 @@
 " - Set a fold programmatically
 " - Have the folds update somewhat automatically
 
+normal zE
+
+nmap <Tab> za
+nmap <S-Tab> zA
+
 function! RunTests()
 python << endpython
 test_isHeader()
@@ -30,12 +35,25 @@ def findDepth(text):
   return len(re.match("#+ ", text).group(0)) - 1
 
 def findFoldRanges():
-  #headers = findHeaders()
-  headers = [(3, 1), (7, 2), (11, 3), (15, 2)]
+  headers = findHeaders()
+  fileLength = len(vim.current.buffer)
+  toReturn = []
   for (line, depth) in headers:
-    print line, depth
+    matches = filter(lambda (l, d): l > line and d <= depth, headers)
+    if matches == []:
+      toReturn += [[line, 17]]
+    else:
+      toReturn += [[line, matches[0][0] - 1]]
+  return toReturn
 
-findFoldRanges()
+def makeFold(foldRange):
+  vim.command("%s,%sfold" % (foldRange[0], foldRange[1]))
+  vim.command("foldo")
+
+def foldIt():
+  for foldRange in findFoldRanges():
+    print foldRange
+    makeFold(foldRange)
 
 # tests
 
@@ -55,7 +73,6 @@ def test_findDepth():
   assert findDepth("### header 3") == 3, "find depth 3"
 
 def test_findFoldRanges():
-  print findFoldRanges()
   assert findFoldRanges() == [[3, 17], [7, 14], [11, 14], [15, 17]], "find fold ranges"
 
 endpython
