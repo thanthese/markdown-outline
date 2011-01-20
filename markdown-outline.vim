@@ -9,7 +9,8 @@ nmap <Tab> za
 nmap + zr
 nmap _ zm
 
-set foldcolumn=5
+set foldcolumn=4
+set foldtext=getline(v:foldstart)
 
 function! RunTests()
 python << endpython
