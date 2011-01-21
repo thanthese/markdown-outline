@@ -10,7 +10,11 @@ nmap + zr
 nmap _ zm
 
 set foldcolumn=4
-set foldtext=getline(v:foldstart)
+set foldtext=GetFoldText()
+
+function! GetFoldText()
+  return getline(v:foldstart) . "  "
+endfunction
 
 function! RunTests()
 python << endpython
