@@ -5,13 +5,19 @@
 " Treat a markdown file like an outline.
 "
 
-" Things I need to be able to do
-" - move list indent in and out
-" - syntax highlighting
+" things to do
+" - make tab work like org-mode
+
+" # init settings
 
 nmap <Tab> za
 nmap + zr
 nmap _ zm
+nmap <M-j> zr
+nmap <M-k> zm
+
+nmap <M-h> :py moveLeft()<CR>
+nmap <M-l> :py moveRight()<CR>
 
 set foldcolumn=4
 set foldtext=GetFoldText()
@@ -23,32 +29,34 @@ endfunction
 python << endpython
 import re
 
+# folding
+
 def isHeader(text):
   return findHeaderDepth(text) > 0
 
-# return list of (line number, header depth) for all headers in file
+## return list of (line number, header depth) for all headers in file
 def findHeaders():
   numberedLines = getNumberedLines()
   headers = filter(lambda (linenum, text): isHeader(text), numberedLines)
   return map(lambda (linenum, text): (linenum, findHeaderDepth(text)), headers)
 
-# return list of (line number, line text) for each line in file
+## return list of (line number, line text) for each line in file
 def getNumberedLines():
   buf = vim.current.buffer
   lineNumbers = range(1, len(buf) + 1)
   return zip(lineNumbers, buf)
 
 def findHeaderDepth(text):
-  matches = re.match("#+ ", text)
+  matches = re.match("\W*#+ ", text)
   return len(matches.group(0)) - 1 if matches else 0
 
-# find list of fold ranges, with each inner range as
-# [start fold line, end fold line]
+## find list of fold ranges, with each inner range as
+## [start fold line, end fold line]
 def findFoldRanges():
   headers = findHeaders()
   return map(lambda (l, d): [l, findNextHeader((l, d), headers)], headers)
 
-# find header with the next greater line, and an equal or smaller depth
+## find header with the next greater line, and an equal or smaller depth
 def findNextHeader((line, depth), headers):
   fileLength = len(vim.current.buffer)
   matches = filter(lambda (l, d): l > line and d <= depth, headers)
@@ -64,9 +72,28 @@ def foldIt():
     makeFold(foldRange)
   vim.command("norm zM")  # close all folds
 
-# tests
+# indenting
 
-# to run tests: py runTests() in testfile.md
+def moveRight():
+  row = getCurrentRow()
+  buf = vim.current.buffer
+  prefix = "  " if isListElement(buf[row]) else "- "
+  buf[row] = prefix + buf[row]
+
+def moveLeft():
+  row = getCurrentRow()
+  buf = vim.current.buffer
+  if isListElement(buf[row]):
+    buf[row] = buf[row][2:]
+
+def isListElement(text):
+  return re.match(" *- ", text)
+
+def getCurrentRow():
+  (row, col) = vim.current.window.cursor
+  return row - 1
+
+# tests ( to run: py runTests() in testfile.md )
 
 def runTests():
   test_isHeader()
@@ -74,11 +101,18 @@ def runTests():
   test_findDepth()
   test_findFoldRanges()
   test_getNumberedLines()
+  test_isListElement()
   print "SUCCESS"
 
 def test_isHeader():
   assert isHeader("# header"), "header 1 example"
   assert isHeader("## header"), "header 2 example"
+  assert isHeader("         # header"), "header 1 example, spaces"
+  assert isHeader(" , . / | # header"), "header 1 example, symbols"
+  assert isHeader("         ## header"), "header 2 example, spaces"
+  assert isHeader(" , . / | ## header"), "header 2 example, symbols"
+  assert not isHeader(" a b c d # header"), "header 1 example, letters"
+  assert not isHeader(" a b c d ## header"), "header 2 example, letters"
   assert not isHeader("#immediateText"), "immediate text"
   assert not isHeader(""), "blank line"
   assert not isHeader("not a header"), "not header example"
@@ -97,5 +131,11 @@ def test_findFoldRanges():
 
 def test_getNumberedLines():
   assert getNumberedLines()[-1] == (17, "And the last bit of filler"), "get numbered lines"
+
+def test_isListElement():
+  assert isListElement("- an element"), "single element"
+  assert isListElement("  - an element"), "single element, with spaces"
+  assert isListElement("    - an element"), "single element, with many spaces"
+  assert not isListElement("not an element"), "single element, with many spaces"
 
 endpython
