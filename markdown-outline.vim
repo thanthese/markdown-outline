@@ -1,6 +1,4 @@
 " Things I need to be able to do
-" - pretty foldtext
-" - learn all fold commands (for global vs local)
 " - move list indent in and out
 
 normal zE
