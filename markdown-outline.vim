@@ -4,13 +4,13 @@
 "
 " Treat a markdown file like an outline.
 "
-
-" things to do
-" - make tab work like org-mode
+" Features:
+"
 
 " # init settings
 
 nmap <Tab> za
+
 nmap + zr
 nmap _ zm
 nmap <M-j> zr
@@ -18,6 +18,8 @@ nmap <M-k> zm
 
 nmap <M-h> :py moveLeft()<CR>
 nmap <M-l> :py moveRight()<CR>
+
+nmap \f :py foldIt()<CR>
 
 set foldcolumn=4
 set foldtext=GetFoldText()
@@ -71,6 +73,7 @@ def foldIt():
   for foldRange in findFoldRanges():
     makeFold(foldRange)
   vim.command("norm zM")  # close all folds
+  vim.command("norm zv")  # open folds on cursor
 
 # indenting
 
