@@ -21,14 +21,18 @@ nmap \F :call UnFoldIt()<CR>
 nmap <Tab> za
 
 " open/close folds by nesting level
-nmap + zr
-nmap _ zm
 nmap <M-j> zr
 nmap <M-k> zm
+nmap <S-Up> zm
+nmap <S-Down> zr
+nmap + zr
+nmap _ zm
 
 " modify list element indentation
 nmap <M-h> :py moveLeft()<CR>
 nmap <M-l> :py moveRight()<CR>
+nmap <S-Left>  :py moveLeft()<CR>
+nmap <S-Right> :py moveRight()<CR>
 
 set foldtext=GetFoldText()
 
