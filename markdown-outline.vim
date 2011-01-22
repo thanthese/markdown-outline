@@ -5,33 +5,53 @@
 " Treat a markdown file like an outline.
 "
 " Features:
+" - folds correctly on nested markdown headers (#, ##, ...)
+" - open and close all folds by header level
+" - use <Tab> to toggle folding
+" - move list nesting
 "
 
-" # init settings
+" # key mappings and settings
 
+" initialize folding on page
+nmap \f :call FoldIt()<CR>
+nmap \F :call UnFoldIt()<CR>
+
+" toggle fold
 nmap <Tab> za
 
+" open/close folds by nesting level
 nmap + zr
 nmap _ zm
 nmap <M-j> zr
 nmap <M-k> zm
 
+" modify list element indentation
 nmap <M-h> :py moveLeft()<CR>
 nmap <M-l> :py moveRight()<CR>
 
-nmap \f :py foldIt()<CR>
-
-set foldcolumn=4
 set foldtext=GetFoldText()
+
+" # startup and tear down vimscript functions
 
 function! GetFoldText()
   return getline(v:foldstart) . "  "
 endfunction
 
+function! FoldIt()
+  set foldcolumn=4
+  py foldIt()
+endfunction
+
+function! UnFoldIt()
+  norm zE
+  set foldcolumn=0
+endfunction
+
+" # folding
+
 python << endpython
 import re
-
-# folding
 
 def isHeader(text):
   return findHeaderDepth(text) > 0
@@ -50,7 +70,10 @@ def getNumberedLines():
 
 def findHeaderDepth(text):
   matches = re.match("\W*#+ ", text)
-  return len(matches.group(0)) - 1 if matches else 0
+  return countHashes(matches.group(0)) if matches else 0
+
+def countHashes(text):
+  return len(filter(lambda c: c == '#', text))
 
 ## find list of fold ranges, with each inner range as
 ## [start fold line, end fold line]
@@ -64,10 +87,12 @@ def findNextHeader((line, depth), headers):
   matches = filter(lambda (l, d): l > line and d <= depth, headers)
   return fileLength if matches == [] else matches[0][0] - 1
 
+## make fold given range of [start line, end line]
 def makeFold(foldRange):
   vim.command("%s,%sfold" % (foldRange[0], foldRange[1]))
   vim.command("norm zR")  # open all folds
 
+## initialize folding
 def foldIt():
   vim.command("norm zE")  # erase all folds
   for foldRange in findFoldRanges():
@@ -75,7 +100,7 @@ def foldIt():
   vim.command("norm zM")  # close all folds
   vim.command("norm zv")  # open folds on cursor
 
-# indenting
+# indenting list elements
 
 def moveRight():
   row = getCurrentRow()
@@ -101,10 +126,11 @@ def getCurrentRow():
 def runTests():
   test_isHeader()
   test_findHeaders()
-  test_findDepth()
+  test_findHeaderDepth()
   test_findFoldRanges()
   test_getNumberedLines()
   test_isListElement()
+  test_countHashes()
   print "SUCCESS"
 
 def test_isHeader():
@@ -123,11 +149,14 @@ def test_isHeader():
 def test_findHeaders():
   assert findHeaders() == [(3, 1), (7, 2), (11, 3), (15, 2)], "find headers"
 
-def test_findDepth():
+def test_findHeaderDepth():
   assert findHeaderDepth("header 0") == 0, "find depth 0"
   assert findHeaderDepth("# header 1") == 1, "find depth 1"
   assert findHeaderDepth("## header 2") == 2, "find depth 2"
   assert findHeaderDepth("### header 3") == 3, "find depth 3"
+  assert findHeaderDepth(". | { ` # header 1") == 1, "find depth 1, symbols"
+  assert findHeaderDepth(". | { ` ## header 2") == 2, "find depth 2, symbols"
+  assert findHeaderDepth(". | { ` ### header 3") == 3, "find depth 3, symbols"
 
 def test_findFoldRanges():
   assert findFoldRanges() == [[3, 17], [7, 14], [11, 14], [15, 17]], "find fold ranges"
@@ -140,5 +169,12 @@ def test_isListElement():
   assert isListElement("  - an element"), "single element, with spaces"
   assert isListElement("    - an element"), "single element, with many spaces"
   assert not isListElement("not an element"), "single element, with many spaces"
+
+def test_countHashes():
+  assert countHashes("none") == 0, "none"
+  assert countHashes("# one") == 1, "one"
+  assert countHashes("one #") == 1, "one, end"
+  assert countHashes("## two") == 2, "two"
+  assert countHashes("two ##") == 2, "two"
 
 endpython
