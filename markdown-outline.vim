@@ -21,12 +21,12 @@ nmap \F :call UnFoldIt()<CR>
 nmap <Tab> za
 
 " open/close folds by nesting level
-nmap <M-j> zr
-nmap <M-k> zm
-nmap <S-Up> zm
-nmap <S-Down> zr
-nmap + zr
-nmap _ zm
+nmap <M-j> zr:set foldlevel<CR>
+nmap <M-k> zm:set foldlevel<CR>
+nmap <S-Up> zm:set foldlevel<CR>
+nmap <S-Down> zr:set foldlevel<CR>
+nmap + zr:set foldlevel<CR>
+nmap _ zm:set foldlevel<CR>
 
 " modify list element indentation
 nmap <M-h> :py moveLeft()<CR>
@@ -102,7 +102,6 @@ def foldIt():
   for foldRange in findFoldRanges():
     makeFold(foldRange)
   vim.command("norm zM")  # close all folds
-  vim.command("norm zv")  # open folds on cursor
 
 # indenting list elements
 
