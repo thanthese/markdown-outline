@@ -9,6 +9,7 @@
 " - open and close all folds by header level
 " - use <Tab> to toggle folding
 " - move list nesting
+" - move heading nesting
 "
 
 " # key mappings and settings
@@ -108,14 +109,19 @@ def foldIt():
 def moveRight():
   row = getCurrentRow()
   buf = vim.current.buffer
-  prefix = "  " if isListElement(buf[row]) else "- "
-  buf[row] = prefix + buf[row]
+  if isHeader(buf[row]):
+    buf[row] = increaseHeaderDepth(buf[row])
+  elif not isBlank(buf[row]):
+    prefix = "  " if isListElement(buf[row]) else "- "
+    buf[row] = prefix + buf[row]
 
 def moveLeft():
   row = getCurrentRow()
   buf = vim.current.buffer
   if isListElement(buf[row]):
     buf[row] = buf[row][2:]
+  elif isHeader(buf[row]):
+    buf[row] = reduceHeaderDepth(buf[row])
 
 def isListElement(text):
   return re.match(" *- ", text)
@@ -123,6 +129,15 @@ def isListElement(text):
 def getCurrentRow():
   (row, col) = vim.current.window.cursor
   return row - 1
+
+def reduceHeaderDepth(text):
+  return text.replace("## ", "# ")
+
+def increaseHeaderDepth(text):
+  return text.replace("# ", "## ")
+
+def isBlank(text):
+  return text.strip() == ""
 
 # tests ( to run: py runTests() in testfile.md )
 
@@ -134,6 +149,9 @@ def runTests():
   test_getNumberedLines()
   test_isListElement()
   test_countHashes()
+  test_reduceHeaderDepth()
+  test_increaseHeaderDepth()
+  test_isBlank()
   print "SUCCESS"
 
 def test_isHeader():
@@ -179,5 +197,26 @@ def test_countHashes():
   assert countHashes("one #") == 1, "one, end"
   assert countHashes("## two") == 2, "two"
   assert countHashes("two ##") == 2, "two"
+
+def test_reduceHeaderDepth():
+  assert reduceHeaderDepth("some header") == "some header", "don't reduce text"
+  assert reduceHeaderDepth("# some header") == "# some header", "don't reduce header"
+  assert reduceHeaderDepth(". . . # some header") == ". . . # some header", "don't reduce header, symbols"
+  assert reduceHeaderDepth("## some header") == "# some header", "reduce header"
+  assert reduceHeaderDepth(". . . ## some header") == ". . . # some header", "reduce header, symbols"
+  assert reduceHeaderDepth("### some header") == "## some header", "reduce header"
+  assert reduceHeaderDepth(". . . ### some header") == ". . . ## some header", "reduce header, symbols"
+
+def test_increaseHeaderDepth():
+  assert increaseHeaderDepth("some header") == "some header", "don't increase text"
+  assert increaseHeaderDepth("# some header") == "## some header", "increase header"
+  assert increaseHeaderDepth(". . . # some header") == ". . . ## some header", "increase header, symbols"
+  assert increaseHeaderDepth("## some header") == "### some header", "increase header"
+  assert increaseHeaderDepth(". . . ## some header") == ". . . ### some header", "increase header, symbols"
+
+def test_isBlank():
+  assert isBlank(""), "completely null"
+  assert isBlank(" "), "single space"
+  assert isBlank("       "), "many spaces"
 
 endpython
