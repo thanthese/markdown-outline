@@ -21,13 +21,15 @@ nmap \F :call UnFoldIt()<CR>
 " toggle fold
 nmap <Tab> za
 
+" jump around folds
+nmap <M-j> zj
+nmap <M-k> zk
+
 " open/close folds by nesting level
-nmap <M-j> zr:set foldlevel<CR>
-nmap <M-k> zm:set foldlevel<CR>
-nmap <S-Up> zm:set foldlevel<CR>
-nmap <S-Down> zr:set foldlevel<CR>
-nmap + zr:set foldlevel<CR>
-nmap _ zm:set foldlevel<CR>
+nmap <S-Up> zm:setlocal foldlevel<CR>
+nmap <S-Down> zr:setlocal foldlevel<CR>
+nmap + zr:setlocal foldlevel<CR>
+nmap _ zm:setlocal foldlevel<CR>
 
 " modify list element indentation
 nmap <M-h> :py moveLeft()<CR>
@@ -35,7 +37,7 @@ nmap <M-l> :py moveRight()<CR>
 nmap <S-Left>  :py moveLeft()<CR>
 nmap <S-Right> :py moveRight()<CR>
 
-set foldtext=GetFoldText()
+setlocal foldtext=GetFoldText()
 
 " # startup and tear down vimscript functions
 
@@ -44,13 +46,13 @@ function! GetFoldText()
 endfunction
 
 function! FoldIt()
-  set foldcolumn=4
+  setlocal foldcolumn=4
   py foldIt()
 endfunction
 
 function! UnFoldIt()
   norm zE
-  set foldcolumn=0
+  setlocal foldcolumn=0
 endfunction
 
 " # folding
