@@ -18,6 +18,9 @@
 nmap \f :call FoldIt()<CR>
 nmap \F :call UnFoldIt()<CR>
 
+" run validation (headers without a leading space are bad)
+nmap \mv :g/\S\n\W*#<CR>
+
 " toggle fold
 nmap <Tab> za
 
