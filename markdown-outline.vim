@@ -6,10 +6,9 @@
 "
 " Features:
 " - folds correctly on nested markdown headers (#, ##, ...)
-" - open and close all folds by header level
 " - use <Tab> to toggle folding
-" - move list nesting
-" - move heading nesting
+" - move list/heading nesting
+" - simple header validation
 "
 
 " # key mappings and settings
@@ -18,21 +17,13 @@
 nmap \f :call FoldIt()<CR>
 nmap \F :call UnFoldIt()<CR>
 
-" run validation (headers without a leading space are bad)
-nmap \mv :g/\S\n\W*#<CR>
-
 " toggle fold
 nmap <Tab> za
+vmap <Tab> zA
+nmap <S-Tab> zA
 
-" jump around folds
-nmap <M-j> zj
-nmap <M-k> zk
-
-" open/close folds by nesting level
-nmap <S-Up> zm:setlocal foldlevel<CR>
-nmap <S-Down> zr:setlocal foldlevel<CR>
-nmap + zr:setlocal foldlevel<CR>
-nmap _ zm:setlocal foldlevel<CR>
+" run validation (headers without a leading space are bad)
+nmap \mv :g/\S\n\W*#<CR>
 
 " modify list element indentation
 nmap <M-h> :py moveLeft()<CR>
