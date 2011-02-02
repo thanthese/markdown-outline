@@ -4,49 +4,27 @@
 "
 " Treat a markdown file like an outline.
 "
-" Features:
-" - folds correctly on nested markdown headers (#, ##, ...)
-" - use <Tab> to toggle folding
-" - move list/heading nesting
-" - simple header validation
-"
 
-" # key mappings and settings
+" # key mappings
 
 " initialize folding on page
-nmap \f :call FoldIt()<CR>
-nmap \F :call UnFoldIt()<CR>
+nmap \f :py foldIt()<CR>
 
 " toggle fold
 nmap <Tab> za
-vmap <Tab> zA
 nmap <S-Tab> zA
+
+" indent/un-indent lists and headers
+imap <Tab> <C-o>:py moveRight()<CR>
+imap <S-Tab> <C-o>:py moveLeft()<CR>
 
 " run validation (headers without a leading space are bad)
 nmap \mv :g/\S\n\W*#<CR>
 
-" modify list element indentation
-nmap <M-h> :py moveLeft()<CR>
-nmap <M-l> :py moveRight()<CR>
-nmap <S-Left>  :py moveLeft()<CR>
-nmap <S-Right> :py moveRight()<CR>
-
+" # fold text
 setlocal foldtext=GetFoldText()
-
-" # startup and tear down vimscript functions
-
 function! GetFoldText()
   return getline(v:foldstart) . "  "
-endfunction
-
-function! FoldIt()
-  setlocal foldcolumn=4
-  py foldIt()
-endfunction
-
-function! UnFoldIt()
-  norm zE
-  setlocal foldcolumn=0
 endfunction
 
 " # folding
