@@ -21,7 +21,7 @@ imap <S-Tab> <C-o>:py moveLeft()<CR>
 " run validation (headers without a leading space are bad)
 nmap \mv :g/\S\n\W*#<CR>
 
-" # fold text
+" # set fold text
 setlocal foldtext=GetFoldText()
 function! GetFoldText()
   return getline(v:foldstart) . "  "
