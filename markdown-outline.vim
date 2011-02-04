@@ -12,14 +12,14 @@ nmap \f :py foldIt()<CR>
 
 " toggle fold
 nmap <Tab> za
-nmap <S-Tab> zA
+nmap  <S-Tab> zA
 
 " indent/un-indent lists and headers
-imap <Tab> <C-o>:py moveRight()<CR>
-imap <S-Tab> <C-o>:py moveLeft()<CR>
+"imap <buffer> <Tab> <C-o>:py moveRight()<CR>
+"imap <buffer> <S-Tab> <C-o>:py moveLeft()<CR>
 
 " run validation (headers without a leading space are bad)
-nmap \mv :g/\S\n\W*#<CR>
+nmap  \mv :g/\S\n\W*#<CR>
 
 " # set fold text
 setlocal foldtext=GetFoldText()
