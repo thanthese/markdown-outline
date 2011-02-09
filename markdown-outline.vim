@@ -4,28 +4,37 @@
 "
 " Treat a markdown file like an outline.
 "
+" Goals: as few features and mappings as I can live with.
+"
 
-" # key mappings
+" # key mappings and other config
 
 " initialize folding on page
+" note: sets some local mappings
 nmap \f :py foldIt()<CR>
 
 " toggle fold
 nmap <Tab> za
-nmap  <S-Tab> zA
-
-" indent/un-indent lists and headers
-"imap <buffer> <Tab> <C-o>:py moveRight()<CR>
-"imap <buffer> <S-Tab> <C-o>:py moveLeft()<CR>
-
-" run validation (headers without a leading space are bad)
-nmap  \mv :g/\S\n\W*#<CR>
+nmap <S-Tab> zA
 
 " # set fold text
 setlocal foldtext=GetFoldText()
 function! GetFoldText()
   return getline(v:foldstart) . "  "
 endfunction
+
+" Provide "forcible validation".
+"
+" There are two parts here. Both parts run before the save event on
+" markdown files (or my common notes file).
+"
+" 1. Before save, replace multiple carriage returns before a header with a
+"    single carrige return
+"
+" 2. Before save, whenever there's a non-whitespace (\S) character in
+"    the line before a header (^\W*#), add a blank line before the
+"    header.
+autocmd! BufWrite *.md,all-notes.txt %s/^\s*$\n\(^\s*$\n\)\+\(\W*#.*\)/\r\2/e | g/\S\n^\W*#/norm o
 
 " # folding
 
@@ -55,6 +64,7 @@ def countHashes(text):
   return len(filter(lambda c: c == '#', text))
 
 ## find list of fold ranges, with each inner range as
+
 ## [start fold line, end fold line]
 def findFoldRanges():
   headers = findHeaders()
@@ -71,47 +81,17 @@ def makeFold(foldRange):
   vim.command("%s,%sfold" % (foldRange[0], foldRange[1]))
   vim.command("norm zR")  # open all folds
 
-## initialize folding
+## initialize plugin
 def foldIt():
-  vim.command("norm zE")  # erase all folds
+  ### erase all folds
+  vim.command("norm zE")
+
+  ### create ranges
   for foldRange in findFoldRanges():
     makeFold(foldRange)
-  vim.command("norm zM")  # close all folds
 
-# indenting list elements
-
-def moveRight():
-  row = getCurrentRow()
-  buf = vim.current.buffer
-  if isHeader(buf[row]):
-    buf[row] = increaseHeaderDepth(buf[row])
-  elif not isBlank(buf[row]):
-    prefix = "  " if isListElement(buf[row]) else "- "
-    buf[row] = prefix + buf[row]
-
-def moveLeft():
-  row = getCurrentRow()
-  buf = vim.current.buffer
-  if isListElement(buf[row]):
-    buf[row] = buf[row][2:]
-  elif isHeader(buf[row]):
-    buf[row] = reduceHeaderDepth(buf[row])
-
-def isListElement(text):
-  return re.match(" *- ", text)
-
-def getCurrentRow():
-  (row, col) = vim.current.window.cursor
-  return row - 1
-
-def reduceHeaderDepth(text):
-  return text.replace("## ", "# ")
-
-def increaseHeaderDepth(text):
-  return text.replace("# ", "## ")
-
-def isBlank(text):
-  return text.strip() == ""
+  ### close all folds
+  vim.command("norm zM")
 
 # tests ( to run: py runTests() in testfile.md )
 
