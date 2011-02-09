@@ -17,6 +17,11 @@ nmap \f :py foldIt()<CR>
 nmap <Tab> za
 nmap <S-Tab> zA
 
+" navigate to the next visible header with shift + arrows (use 'n' after
+" that to go to the next header, whether visible or not)
+nmap <S-Down> /^\W\+#<CR>
+nmap <S-Up>   ?^\W\+#<CR>
+
 " # set fold text
 setlocal foldtext=GetFoldText()
 function! GetFoldText()
