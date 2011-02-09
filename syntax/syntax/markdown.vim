@@ -14,7 +14,7 @@ syn sync minlines=10
 syn case ignore
 
 " sjm added
-syn match markdownTag " :\w\+ "
+syn match markdownTag " :\w\+"
 
 syn match markdownValid '[<>]\S\@!'
 syn match markdownValid '&\%(#\=\w*;\)\@!'

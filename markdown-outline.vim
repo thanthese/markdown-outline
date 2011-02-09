@@ -22,12 +22,6 @@ nmap <S-Tab> zA
 nmap <S-Down> /^\W\+#<CR>
 nmap <S-Up>   ?^\W\+#<CR>
 
-" # set fold text
-setlocal foldtext=GetFoldText()
-function! GetFoldText()
-  return getline(v:foldstart) . "  "
-endfunction
-
 " Provide "forcible validation".
 "
 " There are two parts here. Both parts run before the save event on
@@ -40,6 +34,12 @@ endfunction
 "    the line before a header (^\W*#), add a blank line before the
 "    header.
 autocmd! BufWrite *.md,all-notes.txt %s/^\s*$\n\(^\s*$\n\)\+\(\W*#.*\)/\r\2/e | g/\S\n^\W*#/norm o
+
+" # set fold text
+setlocal foldtext=GetFoldText()
+function! GetFoldText()
+  return getline(v:foldstart) . "  "
+endfunction
 
 " # folding
 
