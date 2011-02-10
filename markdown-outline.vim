@@ -89,35 +89,12 @@ def foldIt():
   vim.command("nmap <buffer> <S-Down> /^\W\+#<CR>")
   vim.command("nmap <buffer> <S-Up>   ?^\W\+#<CR>")
 
-  ## promote/demote list indentation level on tab, in insert mode
-  vim.command("imap <Tab> <C-o>:py shiftRight()<CR>")
-  vim.command("imap <S-Tab> <C-o>:py shiftLeft()<CR>")
-
   ## create ranges
   for foldRange in findFoldRanges():
     makeFold(foldRange)
 
   ## close all folds
   vim.command("norm zM")
-
-# shifting
-def shiftRight():
-  (row, col) = vim.current.window.cursor
-
-  if( "- " in vim.current.buffer[row-1] ):
-    vim.current.buffer[row-1] = "  " + vim.current.buffer[row-1]
-    vim.current.window.cursor = (row, col + 2)
-  else:
-    vim.current.buffer[row-1] += "  "
-    vim.current.window.cursor = (row, col + 2)
-
-def shiftLeft():
-  (row, col) = vim.current.window.cursor
-
-  if( not "  - " in vim.current.buffer[row-1] ): return
-
-  vim.current.buffer[row-1] = vim.current.buffer[row-1][2:]
-  vim.current.window.cursor = (row, col - 2)
 
 # tests ( to run: py runTests() in testfile.md )
 
