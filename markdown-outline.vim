@@ -9,7 +9,7 @@
 
 " # key mappings and other config
 
-" initialize folding on page (sets some local mappings)
+" initialize folding on page (note: sets some local mappings)
 nmap \f :py foldIt()<CR>
 
 " toggle fold
