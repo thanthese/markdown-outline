@@ -84,10 +84,6 @@ def foldIt():
   ## erase all folds
   vim.command("norm zE")
 
-  ## add help for creating long lists
-  vim.command("setlocal comments=:-")        ## "-" is a comment
-  vim.command("setlocal formatoptions+=ro")  ## add comments following comments
-
   ## navigate to the next visible header with shift + arrows (use 'n' after
   ## that to go to the next header, whether visible or not)
   vim.command("nmap <buffer> <S-Down> /^\W\+#<CR>")
