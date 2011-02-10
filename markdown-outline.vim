@@ -9,20 +9,14 @@
 
 " # key mappings and other config
 
-" initialize folding on page
-" note: sets some local mappings
+" initialize folding on page (sets some local mappings)
 nmap \f :py foldIt()<CR>
 
 " toggle fold
 nmap <Tab> za
 nmap <S-Tab> zA
 
-" navigate to the next visible header with shift + arrows (use 'n' after
-" that to go to the next header, whether visible or not)
-nmap <S-Down> /^\W\+#<CR>
-nmap <S-Up>   ?^\W\+#<CR>
-
-" Provide "forcible validation".
+" Provide "forcible validation" on specified files/filetypes.
 "
 " There are two parts here. Both parts run before the save event on
 " markdown files (or my common notes file).
@@ -35,8 +29,8 @@ nmap <S-Up>   ?^\W\+#<CR>
 "    header.
 autocmd! BufWrite *.md,all-notes.txt %s/^\s*$\n\(^\s*$\n\)\+\(\W*#.*\)/\r\2/e | g/\S\n^\W*#/norm o
 
-" # set fold text
-setlocal foldtext=GetFoldText()
+" set fold text
+set foldtext=GetFoldText()
 function! GetFoldText()
   return getline(v:foldstart) . "  "
 endfunction
@@ -68,9 +62,7 @@ def findHeaderDepth(text):
 def countHashes(text):
   return len(filter(lambda c: c == '#', text))
 
-## find list of fold ranges, with each inner range as
-
-## [start fold line, end fold line]
+## find list of fold ranges, with range as [start fold line, end line]
 def findFoldRanges():
   headers = findHeaders()
   return map(lambda (l, d): [l, findNextHeader((l, d), headers)], headers)
@@ -88,14 +80,24 @@ def makeFold(foldRange):
 
 ## initialize plugin
 def foldIt():
-  ### erase all folds
+
+  ## erase all folds
   vim.command("norm zE")
 
-  ### create ranges
+  ## add help for creating long lists
+  vim.command("setlocal comments=:-")        ## "-" is a comment
+  vim.command("setlocal formatoptions+=ro")  ## add comments following comments
+
+  ## navigate to the next visible header with shift + arrows (use 'n' after
+  ## that to go to the next header, whether visible or not)
+  vim.command("nmap <buffer> <S-Down> /^\W\+#<CR>")
+  vim.command("nmap <buffer> <S-Up>   ?^\W\+#<CR>")
+
+  ## create ranges
   for foldRange in findFoldRanges():
     makeFold(foldRange)
 
-  ### close all folds
+  ## close all folds
   vim.command("norm zM")
 
 # tests ( to run: py runTests() in testfile.md )
@@ -156,26 +158,5 @@ def test_countHashes():
   assert countHashes("one #") == 1, "one, end"
   assert countHashes("## two") == 2, "two"
   assert countHashes("two ##") == 2, "two"
-
-def test_reduceHeaderDepth():
-  assert reduceHeaderDepth("some header") == "some header", "don't reduce text"
-  assert reduceHeaderDepth("# some header") == "# some header", "don't reduce header"
-  assert reduceHeaderDepth(". . . # some header") == ". . . # some header", "don't reduce header, symbols"
-  assert reduceHeaderDepth("## some header") == "# some header", "reduce header"
-  assert reduceHeaderDepth(". . . ## some header") == ". . . # some header", "reduce header, symbols"
-  assert reduceHeaderDepth("### some header") == "## some header", "reduce header"
-  assert reduceHeaderDepth(". . . ### some header") == ". . . ## some header", "reduce header, symbols"
-
-def test_increaseHeaderDepth():
-  assert increaseHeaderDepth("some header") == "some header", "don't increase text"
-  assert increaseHeaderDepth("# some header") == "## some header", "increase header"
-  assert increaseHeaderDepth(". . . # some header") == ". . . ## some header", "increase header, symbols"
-  assert increaseHeaderDepth("## some header") == "### some header", "increase header"
-  assert increaseHeaderDepth(". . . ## some header") == ". . . ### some header", "increase header, symbols"
-
-def test_isBlank():
-  assert isBlank(""), "completely null"
-  assert isBlank(" "), "single space"
-  assert isBlank("       "), "many spaces"
 
 endpython
