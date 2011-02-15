@@ -94,7 +94,7 @@ def foldIt():
     makeFold(foldRange)
 
   ## close all folds
-  vim.command("norm zM")
+  vim.command("norm zMgg")
 
 # tests ( to run: py runTests() in testfile.md )
 
