@@ -16,19 +16,6 @@ nmap \f :py foldIt()<CR>
 nmap <Tab> za
 nmap <S-Tab> zA
 
-" Provide "forcible validation" on specified files/filetypes.
-"
-" There are two parts here. Both parts run before the save event on
-" markdown files (or my common notes file).
-"
-" 1. Before save, replace multiple carriage returns before a header with a
-"    single carrige return
-"
-" 2. Before save, whenever there's a non-whitespace (\S) character in
-"    the line before a header (^\W*#), add a blank line before the
-"    header.
-autocmd! BufWrite *.md,all-notes.txt %s/^\s*$\n\(^\s*$\n\)\+\(\W*#.*\)/\r\2/e | g/\S\n^\W*#/norm o
-
 " set fold text
 set foldtext=GetFoldText()
 function! GetFoldText()
@@ -80,6 +67,22 @@ def makeFold(foldRange):
 
 ## initialize plugin
 def foldIt():
+
+  ## Provide "forcible validation".
+  ##
+  ## There are two parts.
+  ##
+  ## 1. Replace multiple carriage returns before a header with a
+  ##    single carrige return
+  ##
+  ## 2. Whenever there's a non-whitespace (\S) character in
+  ##    the line before a header (^\W*#), add a blank line before the
+  ##    header.
+  ##
+  ## Note: backslashes had to be doubly escaped.
+  ##
+  vim.command("%s/^\\s*$\\n\\(^\\s*$\\n\\)\\+\\(\\W*#.*\\)/\\r\\2/e ")
+  vim.command("g/\\S\\n^\\W*#/norm o")
 
   ## erase all folds
   vim.command("norm zE")
