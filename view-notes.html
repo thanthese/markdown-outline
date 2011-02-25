@@ -5,10 +5,54 @@
     <title>View Notes</title>
     <script src="http://code.jquery.com/jquery-1.5.1.min.js" type="text/javascript"></script>
 
+    <style type="text/css">
+
+      body {
+        background-color: #5BC7D6;
+        padding: 0.2em;
+        margin: 0.2em;
+      }
+
+      .open {
+        background-color: #F2E66E;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: Arial, Helvetica, Tahoma, sans-serif;
+        font-family: monospace;
+        background-color: #B5A436;
+        color: #2E3634;
+        padding: .1em;
+        margin: 0;
+        padding-left: 0.2em;
+      }
+
+      h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child {
+        border-top-left-radius: .3em;
+      }
+
+      div {
+        padding: 0;
+        margin: 0;
+        background-color: #FFF9CC;
+        font-family: monospace;
+      }
+
+      pre {
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+
     <script type="text/javascript">
       $(document).ready(function() {
         $('.header').click(function() {
+          $(this).toggleClass("open")
           $(this).next().toggle();
+        });
+        $('pre').click(function() {
+          $(this).parent("div").prev().toggleClass("open")
+          $(this).parent("div").toggle();
         });
       });
     </script>
@@ -16,16 +60,1433 @@
 </head>
 <body>
 
-<h1 class='header'># header 1</h1><div style='display: none;'>
-some text
-<h2 class='header'>## header 2</h2><div style='display: none;'>
-other text
-</div><h2 class='header'>## header 2</h2><div style='display: none;'>
-other text
-<h3 class='header'>### header 3</h3><div style='display: none;'>
-yet more text
-</div></div></div><h1 class='header'># last header</h1><div style='display: none;'>
-last text</div>
+<h1 class='header'>master todo list</h1><div style='display: none;'>
+<pre>- :work ask zach about ott light</pre>
+<pre><br /></pre>
+<pre>- <C-c><Enter> in slime.vim to send carriage return</pre>
+<pre>  - use slime.vim in dotfiles, add soft link</pre>
+<pre>- add HTML escaping to transformer</pre>
+<pre><br /></pre>
+<pre>- pick out songs to sing for next singing lesson (from Ultimate Fakebook?)</pre>
+<pre>- transfer CDs to CD holder</pre>
+<pre>- go get haircut</pre>
+<pre>- :work organize racquetball with Dustin :started[Mon 21 Feb 2011]</pre>
+<pre>- :giz dog's toenails :started[Thur]</pre>
+<pre>- :giz repair inside of right pant leg (work pants, blue band)</pre>
+<pre>- :giz finish hanging pictures</pre>
+<pre>- :giz purge clothes</pre>
+<pre>- :groupon go to Ogden museum (museum of southern art, by Lee Circle)</pre>
+<pre>- :groupon go back to Southern Rep</pre>
+<pre>- :groupon have painter lady come over to house</pre>
+<pre></pre>
+<h2 class='header'>daily tasks</h2><div style='display: none;'>
+<pre>Feb 2011          : t w r f s u m t w r f s u m t w r f s u m t w r f s u m</pre>
+<pre>                  : , , , , ; , , , , 1 , , , , ; , , , , 2 , , , , ; , , ,</pre>
+<pre>singing practice  : _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ . . . . .</pre>
+<pre>rosetta stone     : _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ . . . .</pre>
+<pre>read a book       : _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ . . . . .</pre>
+<pre>piano             : _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ . . . . .</pre>
+<pre>sleep: up at 4am  : _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ . . . .</pre>
+<pre>sleep: before 9pm : _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ . . . .</pre>
+<pre></pre>
+</div><h2 class='header'>:paperwork withhold more federal taxes :started[2/13/11]</h2><div style='display: none;'>
+<pre>- print out w4 Mandi emailed to me</pre>
+<pre>- locate old w2 and newest paystub</pre>
+<pre>- fill out w4</pre>
+<pre>- scan w4 and email it in to geocent</pre>
+<pre>- add item to the calendar to check that the new withholdings work as intended</pre>
+<pre>- $70 more per paycheck</pre>
+<pre></pre>
+</div><h2 class='header'>phone calls (weekday business hours)</h2><div style='display: none;'>
+<pre>- call 1201 about replacing broken ceiling light</pre>
+<pre>- make dentist appointment (tell them about change-of-address -- for Giz, too)</pre>
+<pre></pre>
+</div><h2 class='header'>get new brake tag (before 5pm Tues-Sat)</h2><div style='display: none;'>
+<pre>- where:</pre>
+<pre>    Uptown Carwash</pre>
+<pre>    5550 Tchoupitoulas St.</pre>
+<pre>    Tuesday - Saturday</pre>
+<pre>    9am - 5pm</pre>
+<pre>    504 895 9700</pre>
+<pre>- put next time (with above information) on calendar</pre>
+<pre></pre>
+</div></div><h1 class='header'>hobby projects</h1><div style='display: none;'>
+<pre></pre>
+<h2 class='header'>markdown outline</h2><div style='display: none;'>
+<pre>types of tasks:</pre>
+<pre>- start time</pre>
+<pre>  - none</pre>
+<pre>  - in the past</pre>
+<pre>  - now</pre>
+<pre>  - in the future</pre>
+<pre>    - fixed start time</pre>
+<pre>    - conditional on something else</pre>
+<pre>- end time (due date)</pre>
+<pre>  - none</pre>
+<pre>  - in the past</pre>
+<pre>  - now</pre>
+<pre>  - in the future</pre>
+<pre>    - fixed end time</pre>
+<pre>    - conditional on something else</pre>
+<pre>- duration of task (how long it will take)</pre>
+<pre>- interest/difficulty/importance</pre>
+<pre>- repeats</pre>
+<pre>  - daily, weekly, monthly, yearly</pre>
+<pre>- prerequisites</pre>
+<pre>  - what do I need first (has subtasks)</pre>
+<pre>  - what does someone else need to do for me first?</pre>
+<pre>  - what has to change first?</pre>
+<pre>  - where do I have to be?</pre>
+<pre>  - what time of day/day of week does it have to be?</pre>
+<pre></pre>
+</div><h2 class='header'>project euler: dc edition</h2><div style='display: none;'>
+<pre></pre>
+</div><h2 class='header'>singing</h2><div style='display: none;'>
+<pre></pre>
+<h3 class='header'>exercises by lesson</h3><div style='display: none;'>
+<pre>21 Feb 2011:</pre>
+<pre>- move book, slowly</pre>
+<pre>- breathe out, don't drop book (*hard*)</pre>
+<pre>- lean over piano bench, breathe into back (do a *ton*)</pre>
+<pre>- kneel over on floor</pre>
+<pre>- breathe out through nose -> humming -> "mum", "mum"</pre>
+<pre>- blam! blam! blam!, to loosen jaw and throat, pull in belly on each</pre>
+<pre>- close soft palette, make "ng"/crying baby sound</pre>
+<pre><br /></pre>
+<pre>14 Feb 2011:</pre>
+<pre>- raise the book with your belly</pre>
+<pre></pre>
+</div><h3 class='header'>tips from online</h3><div style='display: none;'>
+<pre>tone:</pre>
+<pre>- sing into "mask": feel bridge of nose, sinuses vibrating</pre>
+<pre>- sing your range with a (si)"ng" sound, working on resonance in your head</pre>
+<pre>- raise your soft palette</pre>
+<pre><br /></pre>
+<pre>range:</pre>
+<pre>- your adam's apple should *not* move up and down all that much</pre>
+<pre>- do jumps by sliding fast</pre>
+<pre><br /></pre>
+<pre>effects:</pre>
+<pre>- vibrato should happen naturally</pre>
+<pre></pre>
+</div></div><h2 class='header'>piano</h2><div style='display: none;'>
+<pre></pre>
+<h3 class='header'>next steps</h3><div style='display: none;'>
+<pre>- transcribe "Here's That Rainy Day" from 7notemode: http://www.youtube.com/watch?v=72CfCdsvArk</pre>
+<pre></pre>
+</div><h3 class='header'>to watch</h3><div style='display: none;'>
+<pre>- 7notemode video tutorials: http://www.7notemode.com/page4/page4.html</pre>
+<pre></pre>
+</div><h3 class='header'>to transcribe</h3><div style='display: none;'>
+<pre>- 7notemode: "here's that rainy day".  There's an onscreen keyboard.</pre>
+<pre>- 7notemode: "laura".  I believe there's a transcript available.</pre>
+<pre>- garage band: off broadway</pre>
+<pre>- garage band: park bench</pre>
+<pre>- garage band: first snowfall (vince giraldi)</pre>
+<pre>- garage band: fifth avenue stroll (bebop)</pre>
+<pre>- garage band: curtain call (blues)</pre>
+<pre>- garage band: buddy (in the pocket)</pre>
+<pre>- garage band: newborn (lovely, noodling)</pre>
+<pre>- my foolish heart: http://www.endlessyoutube.com/watch?v=iuczE8vIujc</pre>
+<pre>- fly me to the moon: http://www.endlessyoutube.com/watch?v=2BPMAmahkXI</pre>
+<pre>- round midnight, 7notemode, transcription: http://pianologist.com/wp-content/uploads/2007/07/round-midnight-by-7notemode1.jpg</pre>
+<pre></pre>
+</div></div><h2 class='header'>games with Giz</h2><div style='display: none;'>
+<pre>- learn/play Munchkins</pre>
+<pre>- play zelda</pre>
+<pre>- scrabble with alternate rules</pre>
+<pre>- both practice drawing something</pre>
+<pre></pre>
+</div><h2 class='header'>cooking</h2><div style='display: none;'>
+<pre>- Cardamom-Scented Oatmeal Pancakes With Apricots and Almonds:</pre>
+<pre>- BASMATI RICE, BLACK-EYED PEAS AND SUNFLOWER SEEDS: http://www.wholefoodsmarket.com/recipes/1414</pre>
+<pre>- COLLARDS WITH LENTILS, TOMATOES AND INDIAN SPICES : http://www.wholefoodsmarket.com/recipes/2876</pre>
+<pre>- RED LENTILS WITH GARLIC AND ONIONS: http://www.wholefoodsmarket.com/recipes/1775</pre>
+<pre>- Weekly meal plan: http://www.wholefoodsmarket.com/healthstartshere/menuplan.php</pre>
+<pre></pre>
+</div><h2 class='header'>khan academy</h2><div style='display: none;'>
+<pre></pre>
+</div><h2 class='header'>arduino</h2><div style='display: none;'>
+<pre></pre>
+</div></div><h1 class='header'>media consumption</h1><div style='display: none;'>
+<pre></pre>
+<h2 class='header'>reading materials already in the house</h2><div style='display: none;'>
+<pre>- baby/parenting study</pre>
+<pre>- "Mindfulness in Plain English" (PDF)</pre>
+<pre>- that space book by Steven Baxter</pre>
+<pre>- "Aging Well" Goerge E. Vaillant (aka that longitudinal aging study)</pre>
+<pre>- SICP: Structure and Interpretation of Computer Programs</pre>
+<pre>- finish reading clojure book (in gmail)</pre>
+<pre>- GEB</pre>
+<pre>- "Duma Key" Stephen King</pre>
+<pre>- "Sun of Suns" Karl Schroeder</pre>
+<pre>- "Confederacy of Dunces" John Kennedy Toole</pre>
+<pre>- "History of the Pelopannesian War" Thucydides</pre>
+<pre>- "Chances are... Adventures in Probability" Michael Kaplan</pre>
+<pre>- "Understanding Comics" Scott McCloud</pre>
+<pre>- "Sketching"</pre>
+<pre>- "Keys to Drawing" Dodson</pre>
+<pre>- "American Lion" Jon Meacham</pre>
+<pre>- "The Stand" Stephen King</pre>
+<pre>- "Thrive"</pre>
+<pre>- "How to Read a French Fry" Russ Parsons</pre>
+<pre>- "In Defense of Sin"</pre>
+<pre>- "Neuromancer" William Gibson</pre>
+<pre>- "Surely you're joking, Mr Feynman" Feynman</pre>
+<pre>- The Feynman Lectures</pre>
+<pre>- "The Math Instinct"</pre>
+<pre>- "The Mathematics of Juggling"</pre>
+<pre>- "The Greatest Generation" Tom Brokaw</pre>
+<pre>- "The Silence of the Lambs"</pre>
+<pre>- "Red Dragon"</pre>
+<pre>- "A Year in the Life of Shakespeare"</pre>
+<pre>- "Squirrel Seeks Chipmunk" David Sadaris</pre>
+<pre>- "Walden and other writings" Henry David Thoreau</pre>
+<pre>- "The Talent Code"</pre>
+<pre>- "Effortless Mastery"</pre>
+<pre>- "Predictably Irrational"</pre>
+<pre>- "Talent is Overrated"</pre>
+<pre>- "The Intuitionist"</pre>
+<pre>- "The Princess Bride"</pre>
+<pre>- "John Adams" David McCullough</pre>
+<pre>- "Drive: The surprising truth about what motivates us" Daniel H. Pink</pre>
+<pre>- "Zen Buddhism: Selected writings of" D.T. Suzuki</pre>
+<pre>- "Dandelion Wine" Ray Bradbury</pre>
+<pre>- "Anna Karenina" Tolstoy</pre>
+<pre>- "Love in the time of Cholera" Gabriel Garcia Marquez</pre>
+<pre>- the Orson Scott Card I haven't read before</pre>
+<pre>- the Jacqueline Carey I haven't read before</pre>
+<pre></pre>
+</div><h2 class='header'>to read</h2><div style='display: none;'>
+<pre>- *all of the hugo awards*</pre>
+<pre>- *all of the nebula awards* (some overlap)</pre>
+<pre>- "Slaughterhouse Five"</pre>
+<pre>- "groundhog day" by phillip dick</pre>
+<pre>- "Zen and the Art of Motorcycle Maintenance"</pre>
+<pre>- everything by neal stephenson</pre>
+<pre>- anything by Vernor Vinge, a "sci-fi writer for hackers"</pre>
+<pre>- "the yiddish policemen's union", michael chabon, 2008, won hugo, not yet on kindle</pre>
+<pre>- "the ambassadors" by henry james</pre>
+<pre>- "stranger in a strange land" by stephen king</pre>
+<pre>- "slaughterhouse five"</pre>
+<pre>- "the regulators" by richard backman</pre>
+<pre>- "heart of darkness"</pre>
+<pre>- "Guns, Germs, and Steel"</pre>
+<pre>- "Finigan's Wake" by James Joyce</pre>
+<pre>- "Ulysses"</pre>
+<pre>- Faulkner</pre>
+<pre>- "1000 years of solitude"</pre>
+<pre>- "House of Leaves"</pre>
+<pre>- "Anthaem" by Ann Ryan</pre>
+<pre>- "Fight Club"</pre>
+<pre></pre>
+</div><h2 class='header'>netflix: watch instantly movies</h2><div style='display: none;'>
+<pre>- shutter island</pre>
+<pre>- tin man miniseries</pre>
+<pre>- the woman in green</pre>
+<pre>- ransom</pre>
+<pre>- no country for old men</pre>
+<pre>- ocean's eleven</pre>
+<pre>- the fugitive</pre>
+<pre>- scarface</pre>
+<pre>- evolution</pre>
+<pre>- all the president's men</pre>
+<pre></pre>
+</div><h2 class='header'>netflix: DVDs to watch</h2><div style='display: none;'>
+<pre>- winnie the pooh</pre>
+<pre>- scott pilgram vs the world</pre>
+<pre>- toystory 3</pre>
+<pre>- clue</pre>
+<pre><br /></pre>
+<pre>honeymoon movies not yet watched:</pre>
+<pre>- a raisin in the sun</pre>
+<pre>- stand and deliver</pre>
+<pre>- sixteen candles</pre>
+<pre>- platoon</pre>
+<pre>- predator</pre>
+<pre>- alien</pre>
+<pre>- the pit and the pendulum</pre>
+<pre>- monsoon wedding</pre>
+<pre>- lolita</pre>
+<pre>- the maltese falcon</pre>
+<pre>- bambi</pre>
+<pre>- clueless</pre>
+<pre>- delusion/al</pre>
+<pre>- (all the original star trek movies)</pre>
+<pre>- clockwork orange</pre>
+<pre>- jumanji</pre>
+<pre>- casablanca</pre>
+<pre>- bonnie and clyde</pre>
+<pre>- thelema and luise</pre>
+<pre>- easy rider</pre>
+<pre>- the alamo</pre>
+<pre>- showgirls</pre>
+<pre>- high noon</pre>
+<pre>- bullet</pre>
+<pre>- a few good men</pre>
+<pre>- all the presidents men</pre>
+<pre>- (one of the early james bond)</pre>
+<pre>- galaxy quest</pre>
+<pre>- saving private ryan</pre>
+<pre>- stranger than fiction</pre>
+<pre>- dazed and confused</pre>
+<pre>- shrek III</pre>
+<pre>- waitress</pre>
+<pre>- snakes on a plane</pre>
+<pre></pre>
+</div></div><h1 class='header'>someday/maybe/in-the-future</h1><div style='display: none;'>
+<pre></pre>
+<h2 class='header'>do</h2><div style='display: none;'>
+<pre>- sign up for June vipassani meeting</pre>
+<pre>  - I like this facility: http://www.dhamma.org/en/schedules/schmahavana.shtml</pre>
+<pre>    - referenced from this blog: http://blog.whistledance.net/2008/03/vipassana-meditation-retreat.html</pre>
+<pre>  - figure out what kind of flights I need to book/transporation</pre>
+<pre>  - buy plane tickets</pre>
+<pre>  - buy relaxing pants</pre>
+<pre>- sign up for racquetball league</pre>
+<pre>- sign up for hang-gliding lessons</pre>
+<pre>- bike cross country</pre>
+<pre></pre>
+</div><h2 class='header'>buy</h2><div style='display: none;'>
+<pre>- :run-ish buy rolled oats and sweetener to bring into work for breakfasts</pre>
+<pre>- :run buy a reflective headband (for to not be killed while running)</pre>
+<pre>- :run buy a nice backpack I can run to work in; small, carries water, not stealable</pre>
+<pre>- buy a new rice cooker</pre>
+<pre>- buy a new monitor for home stand-up desk; must be able to play gamecube</pre>
+<pre>- buy fancy, new, fashionable clothes (research style, brand)</pre>
+<pre>- buy barry harris instructional materials</pre>
+<pre>- buy bike air compressor</pre>
+<pre></pre>
+</div><h2 class='header'>doctors to visit</h2><div style='display: none;'>
+<pre>- get new retainer</pre>
+<pre>- get contacts for to see better</pre>
+<pre>- go to ear, nose, and throat specialist about my sense of smell</pre>
+<pre></pre>
+</div><h2 class='header'>aquire with difficulty</h2><div style='display: none;'>
+<pre>- digitize family photo albums</pre>
+<pre>- automatically push some amount of monthly income into ROTH IRAs</pre>
+<pre></pre>
+</div><h2 class='header'>christmas ideas</h2><div style='display: none;'>
+<pre>- family: sonic cleaner</pre>
+<pre>- family: steamer (for clothes)</pre>
+<pre></pre>
+</div></div><h1 class='header'>work</h1><div style='display: none;'>
+<pre></pre>
+<h2 class='header'>What I've Done</h2><div style='display: none;'>
+<pre>t: todo list taxonomy; sprint review and planning; all hands meeting</pre>
+<pre>w: got an explanation for session ID error</pre>
+<pre>t: WSS works on both endpoints; tracking down session ID error</pre>
+<pre>m: SubscriptionRequest works; WSS works on one endpoint</pre>
+<pre>february 21, 2011:</pre>
+<pre><br /></pre>
+<pre>f: trying to get an example SubscriptionRequest working in SOAP UI</pre>
+<pre>r: fixed menu settings bugs; got Hermes running</pre>
+<pre>w: committed menu thing; installed SoapUI</pre>
+<pre>t: finished hiding the appropriate parts of the menu</pre>
+<pre>m: failed at getting build-time parameters working</pre>
+<pre>february 14, 2011:</pre>
+<pre><br /></pre>
+<pre>f: "Vi/Vim Lunch and Learn", huge success; spring 7 planning</pre>
+<pre>r: demo (didn't end up having to do anything); sprint 7 planning</pre>
+<pre>w: playing around with my vim markdown file; planning for giving demo</pre>
+<pre>t: finished refactoring that javascript thing; lots of code reviews</pre>
+<pre>m: finished working on that javascript testing thing for kevin; got new desk</pre>
+<pre>february 7, 2011:</pre>
+<pre><br /></pre>
+<pre>f: creating way to turn javascript validation on and off for kevin</pre>
+<pre>r: reading maven stuff; helped Luiz a little</pre>
+<pre>w: new furniture came in; Joey Moreland's party; helped Luiz; reading maven docs</pre>
+<pre>t: making web developer interview questions; set owner task with yancy</pre>
+<pre>m: prepared for interviewing; finished unit test; finished "hidden" in UI</pre>
+<pre>january 31, 2011:</pre>
+<pre><br /></pre>
+<pre>f: planned for next sprint; started setting up unit test</pre>
+<pre>r: demo; sick so left early</pre>
+<pre>w: dates are correctly auto-populated; edit link is in place</pre>
+<pre>t: finally got the Production and Saved Search dialog boxes auto populating</pre>
+<pre>m: massive interview project kicking off; still trying to pass subscription in</pre>
+<pre>january 24, 2011:</pre>
+<pre><br /></pre>
+<pre>f: dialogs pop up, now trying to populate them with subscription information</pre>
+<pre>r: good start on making those dialog boxes pop up on manage subscriptions</pre>
+<pre>w: working more on the nice ftl for manage subscriptions, context menus complete</pre>
+<pre>t: comparing times in ftl; defining subscriptions UI better; questions about iccats</pre>
+<pre>m: improving on Manage Subscriptions; fixed crumb link</pre>
+<pre>january 17, 2011:</pre>
+<pre><br /></pre>
+<pre>f: tried to add controller for subscription manager, with ben’s help</pre>
+<pre>r: sprint meetings</pre>
+<pre>w: made table for UI</pre>
+<pre>t: finished most of the html for the inline “popup”; wmii (window manager)</pre>
+<pre>m: got a bit of modal box working</pre>
+<pre>january 10, 2011:</pre>
+<pre><br /></pre>
+<pre>f: I understand how to make changes to and rebuild the project; learning some spring</pre>
+<pre>r: got NN environment set up correctly.  LONG day.</pre>
+<pre>w: buckets upon buckets upon buckets of nites next environment setup</pre>
+<pre>t: setting up nite’s next environment</pre>
+<pre>m: [ sick at home ] supposedly working on the dynamic feature manager</pre>
+<pre>january 4, 2011:</pre>
+<pre><br /></pre>
+<pre>f: [ vacation/wedding in chicago ]</pre>
+<pre>r: catching up on news feeds</pre>
+<pre>w: finished buses and parishes; pushed to stage</pre>
+<pre>t: finished buses problem: groovy writes sql which writes html</pre>
+<pre>m: [ xmas vacation ]</pre>
+<pre>december 27, 2010:</pre>
+<pre><br /></pre>
+<pre>f: [ xmas vacation ]</pre>
+<pre>r: [ got in late ]; reading postgres manual for buses problem</pre>
+<pre>w: brainstorming buses; yancy learns vi; ping pong</pre>
+<pre>t: finished parish shapefiles SLDs, styling, legends; moved to git-svn</pre>
+<pre>m: got 90% of bridges working on the database end</pre>
+<pre>december 20, 2010:</pre>
+<pre><br /></pre>
+<pre>f: security stuff with curl; performance checkboxes</pre>
+<pre>r: [ worked from home ]</pre>
+<pre>w: thinking about not storing webeoc passwords as plain text</pre>
+<pre>t: performance evaluation review for geocent</pre>
+<pre>m: poller gets time on change; don’t write unless different; better soap faults</pre>
+<pre>december 13, 2010:</pre>
+<pre><br /></pre>
+<pre>f: passed SOA module 3 exam; update poller interval on database change</pre>
+<pre>r: clear features from single feature type button; health benefits meeting</pre>
+<pre>w: finished multiple incidents stuff, the testing; hit new webeoc correctly</pre>
+<pre>t: now pointed at the new webeoc site (lots of messing around with WSDLs)</pre>
+<pre>m: made all WebEoc web service proxy objects static java files</pre>
+<pre>december 5, 2010:</pre>
+<pre><br /></pre>
+<pre>f: fighting with the “how to make a new credentials object” problem</pre>
+<pre>r: trying to solve incident/credentials problem</pre>
+<pre>w: first DHS meeting in baton rouge with a real client!; trying to build geoserver</pre>
+<pre>t: UI to clear features; moved taglibs and namespaces; DHS final report</pre>
+<pre>m: completed UIs for pause/resume and “sync now”; lots and lots of unhardcoding issues</pre>
+<pre>november 29, 2010:</pre>
+<pre><br /></pre>
+<pre>f: [ half-day ] got pause/resume working in a very pretty way</pre>
+<pre>r: [ thanksgiving ]</pre>
+<pre>w: [half day] significantly cleaned up WebEocService and unhardcoded lat/lon</pre>
+<pre>t: completed syncing against multiple board/view combinations task; SOA training</pre>
+<pre>m: more backlog; views and boards services; SOA module 3 training</pre>
+<pre>november 22, 2010:</pre>
+<pre><br /></pre>
+<pre>f: [ family in town for thanksgiving ]</pre>
+<pre>r: poller bugs; set session timeout; more backlogging; [ family in town ]</pre>
+<pre>w: SOA exam module 1 (passed); creating project backlog for new DHS contract</pre>
+<pre>t: lots and lots of studying for SOA exam; scrum training</pre>
+<pre>m: new (terrible and huge) furniture came in; brainstorming next sprint; SOA training</pre>
+<pre>november 15, 2010:</pre>
+<pre><br /></pre>
+<pre>f: trying to make poller start only once when using DB config</pre>
+<pre>r: learning great shortcuts in netbeans and gnome; DB configure poller times</pre>
+<pre>w: added GUI to security; moved functionality into EOC project</pre>
+<pre>t: added surprisingly functional grails security.  seriously, wow.</pre>
+<pre>m: ping pong; planning; fixed grails updating bugs</pre>
+<pre>november 8, 2010:</pre>
+<pre><br /></pre>
+<pre>f: [ Disney World vacation! ]</pre>
+<pre>r: fixed timezone problem; upgrading to grails 1.3.5; using wsclient plugin</pre>
+<pre>w: reading up on DHS final report requirements</pre>
+<pre>t: finished GIA book</pre>
+<pre>m: finished rough draft of GIS IPT proposal with Yancy; another 100 pages of GIA</pre>
+<pre>november 1, 2010:</pre>
+<pre><br /></pre>
+<pre>f: [ working from home ] unpacking with giz; reading Grails in Action</pre>
+<pre>r: got syncing databases working through to the last updated record; GIS IPT phone call</pre>
+<pre>w: lots of Grails in Action; working through scenarios for GOHSEP</pre>
+<pre>t: got getUpdatedData working</pre>
+<pre>m: setup prototype stand-up desk; fixed dups problems; filtering works</pre>
+<pre>october 25, 2010:</pre>
+<pre><br /></pre>
+<pre>f: setup poor-man’s stand-up desk at SPAWAR; reading grails in action</pre>
+<pre>r: moving back to SPAWAR; meeting with Geoserver rep; reading GIA</pre>
+<pre>w: duplicates don’t get added to DB anymore</pre>
+<pre>t: fixed “proxy loads twice” problem; reading grails in action</pre>
+<pre>m: reading “Grails in Action”</pre>
+<pre>october 18, 2010:</pre>
+<pre><br /></pre>
+<pre>f: [ worked from home ] reading grails book?</pre>
+<pre>r: reading online; left early to meet contractors for windows; grails in action book</pre>
+<pre>w: got SOAP webeoc thing working in grails, and on stage; xml parsing</pre>
+<pre>t: read about lisp/clojure and stand-up desks; trying to fix work email on phone</pre>
+<pre>m: trying to make the SOAP thing work in grails</pre>
+<pre>october 11, 2010:</pre>
+<pre><br /></pre>
+<pre>f: [ PTO for kevin’s funeral ]</pre>
+<pre>r: successfully returned lat/lon data from webEOC SOAP request</pre>
+<pre>w: can access webEoc web service SOAP API</pre>
+<pre>t: trying to hit webEoc WSDL</pre>
+<pre>m: webEoc designing and WSDLs</pre>
+<pre>october 4, 2010:</pre>
+<pre><br /></pre>
+<pre>f: [ work from home, fell asleep all day ] need to make that up</pre>
+<pre>r: GIS IPT meeting at Michoud; working from home</pre>
+<pre>w: delteking javaone; GIS IPT executive summary</pre>
+<pre>t: javaOne expenses into deltek; working on that paragraph; [ cable guy ]</pre>
+<pre>m: javaOne expenses; UICDS paper</pre>
+<pre>september 27, 2010:</pre>
+<pre><br /></pre>
+<pre>[ JavaOne 2010 ]</pre>
+<pre><br /></pre>
+<pre>f: 5.5hrs, scheduling java; reading online; reading Baysian paper</pre>
+<pre>r: [ packing day ] 4hrs reading Bayesian paper; all hands meeting</pre>
+<pre>w: surfing around online; GIP IPT, got executive summary assigned</pre>
+<pre>t: javaone phone call; working on OSD proposal</pre>
+<pre>m: moving paperwork; work paperwork; poking at improving ICCATS-MAP code</pre>
+<pre>september 13, 2010:</pre>
+<pre><br /></pre>
+<pre>f: moved out of SPAWAR; 2nd IPT meeting</pre>
+<pre>r: finished EOC architecture diagrams; gave up laptopasaurus; burned close-EOC disk</pre>
+<pre>w: parsers tested and works on jboss and glassfish on live data (massive bugs identified)</pre>
+<pre>t: making the xml/kml parser work with our specific cases</pre>
+<pre>m: [ labor day ] got xml parser working</pre>
+<pre>september 6, 2010:</pre>
+<pre><br /></pre>
+<pre>f: [ home ] got iccats-map working on stage; trying to get IDV running locally</pre>
+<pre>r: studying for javascript cert; trying to push iccats to stage (failing...)</pre>
+<pre>w: added tag layer loading progress indicator</pre>
+<pre>t: tag GUI stuff completely works: numbers, arrows, in description, on refresh</pre>
+<pre>m: resume for proposal; EOC charts; adding “add type” to ICCATS</pre>
+<pre>august 30, 2010:</pre>
+<pre><br /></pre>
+<pre>f: resume for proposal; EOC flowcharts</pre>
+<pre>r: [ PTO ]</pre>
+<pre>w: tag folders; 1st GIS IPT; anti-harassment meeting</pre>
+<pre>t: nearly completed end-to-end tag support; javaone planning</pre>
+<pre>m: opacity; starting to add support for tags</pre>
+<pre>august 23, 2010:</pre>
+<pre><br /></pre>
+<pre>f: refactoring; fixed checkboxes on startup; added remove service</pre>
+<pre>r: started building up the toolbar, CSS styling</pre>
+<pre>w: added POST receiver to layers/add, tried to get XML/POST receiver</pre>
+<pre>t: refactoring; fixed addLink bugs on server</pre>
+<pre>m: add layer error handling; js refactoring; left drawer; pushed to server</pre>
+<pre>august 16, 2010:</pre>
+<pre><br /></pre>
+<pre>f: saving link to the database works in a hibernate-y way</pre>
+<pre>r: getting project to save to the database, with unique ids</pre>
+<pre>w: refactored the layer list into jsp; added addlink controller</pre>
+<pre>t: finished ant script to build database; added full database schema</pre>
+<pre>m: got a spring app running for ICCATS, spring and hibernate running together</pre>
+<pre>august 9, 2010:</pre>
+<pre><br /></pre>
+<pre>f: trying to make the left navigation window work with openlayers</pre>
+<pre>r: chicken on the lake; cobra commander on ICCATS new map</pre>
+<pre>w: weighing frameworks like GeoEXT; spring and hibernate tutorials</pre>
+<pre>t: designed ASSOC/ICATS map plugin</pre>
+<pre>m: added “add layer” option to layer controller in EOC for IDV/COBRA project</pre>
+<pre>august 2, 2010:</pre>
+<pre><br /></pre>
+<pre>f: ICATS, got proxy and timer working</pre>
+<pre>r: final day with the proposal</pre>
+<pre>w: more phase I final report</pre>
+<pre>t: COAST phase I final report</pre>
+<pre>m: working on COAST phase I final report</pre>
+<pre>july 26, 2010:</pre>
+<pre><br /></pre>
+<pre>f: added interoperability with google earth, plus headings; COAST phase II proposal</pre>
+<pre>r: adding additional functions to basic export/import views</pre>
+<pre>w: got basic export/import of view functionality in place</pre>
+<pre>t: setting zoom level manually on KML file load</pre>
+<pre>m: discovered why kml/zs don't save out correctly; phone interview Derek Seibert</pre>
+<pre>july 19, 2010:</pre>
+<pre><br /></pre>
+<pre>f: finished refactoring, trying to get the view to save into kmz</pre>
+<pre>r: refactoring ViewExporter.cs; interviewed Jacob Schoen's</pre>
+<pre>w: setting up debugging/tracing environment, reading source code</pre>
+<pre>t: recorded inconsistent behaviors and bugs</pre>
+<pre>m: pulling in the latest COAST plugin versions; set up git</pre>
+<pre>july 12, 2010:</pre>
+<pre><br /></pre>
+<pre>f: reading up on C#; lots of shaders and graphics stuff</pre>
+<pre>r: learning how to write C#</pre>
+<pre>w: reading through IDV website; downloaded COAST</pre>
+<pre>t: interviewed David Olivia at corporate</pre>
+<pre>7.6.10:</pre>
+<pre><br /></pre>
+<pre>[ lots of WACM ]</pre>
+<pre><br /></pre>
+<pre>f: euler, mostly; ruby</pre>
+<pre>r: reading everything on github</pre>
+<pre>w: working at getting into IDV sharepoint; fixed some EOC lat/lon patterns</pre>
+<pre>t: finished grails app to extra *all* working kml urls from cobra</pre>
+<pre>m: resuming getting all kmls from cobra</pre>
+<pre>6.14.10:</pre>
+<pre><br /></pre>
+<pre>f: reading Refactoring by Martin Fowler</pre>
+<pre>r: reviewed David Olivier's interview problems; filling in lat/lon parser cases</pre>
+<pre>w: completed javascript lat/lon parser</pre>
+<pre>t: cleaning parser class; [ worked from home ]</pre>
+<pre>m: simplied feature views; completely refactored lat/lon parser so it's readable</pre>
+<pre>6.7.10:</pre>
+<pre><br /></pre>
+<pre>f: parses all the notable lat/lon styles, plus bounding box and widgets</pre>
+<pre>r: parses many different styles of lat/lon for GOHSEP CSVs</pre>
+<pre>w: fixing IE bugs</pre>
+<pre>t: fixing bugs I introduced at GOHSEP; changing things for customer; backup scripts</pre>
+<pre>m: [ holiday ]</pre>
+<pre>6.1.10:</pre>
+<pre><br /></pre>
+<pre>u: cleaned underscores and hid fields on feature edit/create</pre>
+<pre>s: wrote .war backup script for demo</pre>
+<pre>f: working on production at GOHSEP</pre>
+<pre>r: fixed some underscores; helping yancy make roles work; cleaning db for production</pre>
+<pre>w: solved problem of project freezing trying to load the featureType view</pre>
+<pre>t: automating cobra getting all xmls *without* using curl</pre>
+<pre>m: tried to fix featureType halt bug in EOC; trying to get all kml from cobra</pre>
+<pre>5.24.10:</pre>
+<pre><br /></pre>
+<pre>f: reading up on refactoring, conditionals, and ruby</pre>
+<pre>r: 2 demos in Baton Rouge: LSU and DHH</pre>
+<pre>w: completed cobra kml adapter; debugging shapefiles on demo; preparing for demo</pre>
+<pre>t: found *all* of the working cobra links</pre>
+<pre>m: found kml links in cobra</pre>
+<pre>5.17.10:</pre>
+<pre><br /></pre>
+<pre>f: researching idv; preparing demo server for demoing</pre>
+<pre>r: line and polygon data can be edited</pre>
+<pre>w: started making lines and polygons editable through the feature controller</pre>
+<pre>t: bridges up on demo; polygons work in feature type GUI</pre>
+<pre>m: errors in shapefile importer: large files, and schemas with "version"</pre>
+<pre>5.10.10:</pre>
+<pre><br /></pre>
+<pre>f: deleting unused code from project; bringing the bridges data into the new system</pre>
+<pre>r: .mil email passthrough; designing details of changes to FT UI</pre>
+<pre>w: decorated stage; designed new polygon UI and backend</pre>
+<pre>t: upgraded to postgres 8.4; making preparations to prettify shapfiles on demo</pre>
+<pre>m: refactored parts of CAP messaging; moved shapefiles to demo</pre>
+<pre>5.3.10:</pre>
+<pre><br /></pre>
+<pre>f: looked for oil spill WMSs; working on EOC logo; EOC growl notification</pre>
+<pre>r: shapefile importer has been polished, it is done</pre>
+<pre>w: uploaded a ton of shapefiles on stage; got "change all values in column" service working</pre>
+<pre>t: solved heap space problem in shapefile importer</pre>
+<pre>m: resolved problems with invalid characters in shapefiles; hit heap space errors</pre>
+<pre>4.26.10:</pre>
+<pre><br /></pre>
+<pre>f: started moving shapefiles up to stage, some bugs found</pre>
+<pre>r: more importer error handling, it now identifies Point vs. Polygon</pre>
+<pre>w: [ worked from home ] refactored importer and improved default handling</pre>
+<pre>t: [ worked from home ] implemented buffered/piped shapefile hanging problem in importer</pre>
+<pre>m: found solution to buffered/piped shapefile hanging problem in importer</pre>
+<pre>4.19.10:</pre>
+<pre><br /></pre>
+<pre>f: debugging shapefile importer; completed it in that data shows up on EOC map</pre>
+<pre>r: shapefile importer, show/edit url and other default values</pre>
+<pre>w: shapefile importer, all parts proved to work</pre>
+<pre>t: completed featureType edit views and associated mechanisms</pre>
+<pre>m: createFeatureType() flattens file; started on featureType edit</pre>
+<pre>4.12.10:</pre>
+<pre><br /></pre>
+<pre>f: [ DC trip ]</pre>
+<pre>r: [ DC trip ]</pre>
+<pre>w: [ DC trip ]</pre>
+<pre>t: [ DC trip ]</pre>
+<pre>m: [ DC trip ]</pre>
+<pre>4.5.10:</pre>
+<pre><br /></pre>
+<pre>f: working from home on CAP</pre>
+<pre>r: subset of a CAP message built a feature</pre>
+<pre>w: added shapefiles; CAP message build a basic feature type</pre>
+<pre>t: IA training; read company survey; fixed Brian's svn; using CAP to build featureType; shelter madness</pre>
+<pre>m: IE7 running in XP VM; CAP validation is working for live data</pre>
+<pre>3.29.10:</pre>
+<pre><br /></pre>
+<pre>f: read CAP specifications; database architecture; working with CAP's XML Schema validator</pre>
+<pre>r: controller can accept CAP messages in either POST or GET-link form</pre>
+<pre>w: found sample CAP messages; created CAP controller; working with cURL and POST</pre>
+<pre>t: meet Nelson at Tulane Museum of Natural History in Belle Chasse, LA (fish); started on CAP</pre>
+<pre>m: feature.create/show's date works all the way through; designing validiation types</pre>
+<pre>3.22.10:</pre>
+<pre><br /></pre>
+<pre>f: adding date drop-downs to feature/create, and related food-chain</pre>
+<pre>r: fields that didn't pass validation in feature/create now turn read on reload</pre>
+<pre>w: USNG numbers are working in show, that means DB has runFunction capability</pre>
+<pre>t: started converting geo-hash to lat-long; converted lat-long to USNG</pre>
+<pre>m: configuring VM for testing and bootable drives; allowing geometry to add to database</pre>
+<pre>3.15.10:</pre>
+<pre><br /></pre>
+<pre>f: fixed cross-browser compatibility bugs; adding geometry-specific validation</pre>
+<pre>r: employee survey; designing dynamic feature ajax requests</pre>
+<pre>w: adding error checking to feature.save</pre>
+<pre>t: feature-create fields auto-populate on error</pre>
+<pre>m: got bool validation working; working on field-restore after feature-create fail</pre>
+<pre>3.8.10:</pre>
+<pre><br /></pre>
+<pre>f: [ PTO, family visiting ]</pre>
+<pre>r: [ half-day ] adding transformations based on type to EocAdmin/feature.js</pre>
+<pre>w: playing with vimdiff and quick fix, and tags; escaping SQL data</pre>
+<pre>t: generalizing the validation work</pre>
+<pre>m: finished feature type validation, moving on to feature; fixed bugs</pre>
+<pre>3.1.10:</pre>
+<pre><br /></pre>
+<pre>f: adding feature type validation</pre>
+<pre>r: added list view for featureType; all featureType fields now auto-populate</pre>
+<pre>w: added layerGroup dropdown in featureType/create; most of featureType/list</pre>
+<pre>t: featureController end-to-end test worked</pre>
+<pre>m: featureController framework in place, visual view built</pre>
+<pre>2.22.10:</pre>
+<pre><br /></pre>
+<pre>f: learned vim scripting, perfecting :SentToScreen functionality</pre>
+<pre>r: finished featureType error handling; started on featureController</pre>
+<pre>w: set up featureType tables, got default and mandatory values working</pre>
+<pre>t: [ mardi gras ]</pre>
+<pre>m: read up on emacs as an IDE; thought about default values</pre>
+<pre>2.15.10:</pre>
+<pre><br /></pre>
+<pre>f: architectural discussions about the feature manager; end-to-end manager test</pre>
+<pre>r: used feature type manager to add feature type table</pre>
+<pre>w: added error checking and completed addFeatureType</pre>
+<pre>t: built most of addFeatureType view</pre>
+<pre>m: designing feature-type manager API</pre>
+<pre>2.8.10:</pre>
+<pre><br /></pre>
+<pre>f: argued about new database configurations</pre>
+<pre>r: [ PTO ]</pre>
+<pre>w: propagated yesterday's changed to polygon</pre>
+<pre>t: pulling out the tool functionality into Point</pre>
+<pre>m: refactoring the hell out of Map.js, Tool.js, and UiInterface.js</pre>
+<pre>2.1.10:</pre>
+<pre><br /></pre>
+<pre>f: playing with *this* keyword in polygon</pre>
+<pre>r: namespaces; shelter layer to dynamicPoint</pre>
+<pre>w: implementing reveal module method; moving each namespace into its own file</pre>
+<pre>t: refactoring map; trying to setup IE testing environment</pre>
+<pre>m: refactoring map, trying to remove things that are hardcoded</pre>
+<pre>1.25.10:</pre>
+<pre><br /></pre>
+<pre>f: pushed demo up to server; researching advanced javascript techniques</pre>
+<pre>r: correcting bugs in demo in preparation for Mike Goff's trip to D.C.</pre>
+<pre>w: polygons add and refresh layer correctly; mild refactoring throughout Map.js</pre>
+<pre>t: pizza in the park; fixing polygon bugs; redesigning tool UI with yancy</pre>
+<pre>m: [ MLK day, worked from home ]</pre>
+<pre>1.19.10:</pre>
+<pre><br /></pre>
+<pre>f: ASOCC-NOP integration for the haiti thing -- getting their data on map</pre>
+<pre>r: cleaning up shape-editing events</pre>
+<pre>w: popups, kml passthrough, and login-passthrough are polished and ready for demo</pre>
+<pre>t: popup can be created and layer refreshed with user data, type is set; whale SBIR</pre>
+<pre>m: popup comes up, user can cancel or stick polygon to map from there</pre>
+<pre>1.11.10:</pre>
+<pre><br /></pre>
+<pre>f: set up polygon menu, catching events and making popups</pre>
+<pre>r: kml pass-through works, completed links to google earth; added basic polygon stuff back in</pre>
+<pre>w: more meeing at CERM for SBIR; kml filters CQL filters work; much progress on kml pass-through idea</pre>
+<pre>t: more polygon stuff; helping yancy with dynamic table; editing SBIR at CERM; kml pass-through idea</pre>
+<pre>m: adding openlayers polygons; talk at CERM</pre>
+<pre>1.4.10:</pre>
+<pre><br /></pre>
+<pre>f: [ new year's day ]</pre>
+<pre>r: can add query conditions; column names populate; prototype dom builder</pre>
+<pre>w: completed employee review; restyling totals table</pre>
+<pre>t: [ Christmas vacation ]</pre>
+<pre>m: [ Christmas vacation ]</pre>
+<pre>12.28.09:</pre>
+<pre><br /></pre>
+<pre>f: [ Christmas vacation ]</pre>
+<pre>r: [ Christmas vacation ]</pre>
+<pre>w: [ Christmas vacation ]</pre>
+<pre>t: refactored iconList; now it's readable</pre>
+<pre>m: totals table works, is flexible; correcting labels</pre>
+<pre>12.21.09:</pre>
+<pre><br /></pre>
+<pre>f: finally solved problem with dynamic dictionaries in groovy; shelter totals</pre>
+<pre>r: finished pagination; added filter totals; additional formatting and cleaning</pre>
+<pre>w: playing around with shelter pagination; sending benefit paperwork to HR</pre>
+<pre>t: put PODs in place on stage</pre>
+<pre>m: fixed permalink list styling; creating PODs table</pre>
+<pre>12.14.09:</pre>
+<pre><br /></pre>
+<pre>f: cleaned up bootstrap, making shelters work better; lunch with dave</pre>
+<pre>r: making roll-up reports work in a cleaner, more flexible way</pre>
+<pre>w: put roll-up reporting in place -- basic, but working</pre>
+<pre>t: shelters table -- and yes, it took forever</pre>
+<pre>m: separate stage VM and project works, pretty much perfectly</pre>
+<pre>12.7.09:</pre>
+<pre><br /></pre>
+<pre>f: [ sick day ]</pre>
+<pre>r: [ sick day ]</pre>
+<pre>w: half day, sick; added named permalinks</pre>
+<pre>t: took grails.app.context grails idea until we arrived at staging VM</pre>
+<pre>m: trying radically different tact for fixing broken stage links</pre>
+<pre>11.30.09:</pre>
+<pre><br /></pre>
+<pre>f: [ thanksgiving ]</pre>
+<pre>r: [ thanksgiving ]</pre>
+<pre>w: got proxy back to working; fixing broken links on stage</pre>
+<pre>t: HSWG icons are in the database; added version service; fixed legend width bug</pre>
+<pre>m: legends can open in another window now; proxy whitelist improved</pre>
+<pre>11.23.09:</pre>
+<pre><br /></pre>
+<pre>f: leave early for water damage contractors; legends work, even with permalinks</pre>
+<pre>r: tidying CSS; correcting links in the database GUI</pre>
+<pre>w: debuggings; simplified speedracer plugin</pre>
+<pre>t: fixed wiped production database; legends look pretty solid</pre>
+<pre>m: fixed "unknownPort"; tested stage -> production; legends mostly working</pre>
+<pre>11.16.09:</pre>
+<pre><br /></pre>
+<pre>f: fixed the view/login/apiKey problems once and for all</pre>
+<pre>r: mostly fixed the view parameter problems; mike came for an extended visit</pre>
+<pre>w: fixed javascript links; trying to get stage to pass through the view parameter</pre>
+<pre>t: making the stage server a go, with all login and redirecting</pre>
+<pre>m: permalinks restore opacity; brandon started pushing out links</pre>
+<pre>11.9.09:</pre>
+<pre><br /></pre>
+<pre>f: fixed to demo.geocent.com; added EVAL user hack; fixed session timeout</pre>
+<pre>r: versioning; alphabetize layers; active layers per group counts</pre>
+<pre>w: meeting with keith, mike, and paul at cerm</pre>
+<pre>t: put the bridge data (lots) into production; grails eats it just fine</pre>
+<pre>m: combined all bridge data; finished playing around with jslint</pre>
+<pre>11.2.09:</pre>
+<pre><br /></pre>
+<pre>f: jsLint</pre>
+<pre>r: added logout mechanism, put globals in config file</pre>
+<pre>w: got security working un-hardcoded; next and previous icon search</pre>
+<pre>t: icon search "next", adding EOC security</pre>
+<pre>m: sprint meeting, still working on image search</pre>
+<pre>10.26.09:</pre>
+<pre><br /></pre>
+<pre>f: [ meeting with will lawyer ] finished delaying search, clone functions</pre>
+<pre>r: working on delayed timing functions</pre>
+<pre>w: finished icons table, put it up on server</pre>
+<pre>t: fighting icons table; helping Brian with blacklisting IPs</pre>
+<pre>m: starting to think about pushing project up to stage server</pre>
+<pre>10.19.09:</pre>
+<pre><br /></pre>
+<pre>f: moving day, to the inferior spot</pre>
+<pre>r: [ working from home, president's speech ]</pre>
+<pre>w: started setting up named permalink listings</pre>
+<pre>t: fixed layer drag bugs; added "is dev" checking capability</pre>
+<pre>m: meeting with mike (CMMI); [Columbus Day]</pre>
+<pre>10.12.09:</pre>
+<pre><br /></pre>
+<pre>f: [will, bike breakdown] only one base map at a time now</pre>
+<pre>r: added logo, multiple base maps, fixed permalink bugs</pre>
+<pre>w: performance reviews; got event manager updated (unregister events)</pre>
+<pre>t: got permalinks working</pre>
+<pre>m: attempts with mapnik... mostly failed... google worked</pre>
+<pre>10.5.09:</pre>
+<pre><br /></pre>
+<pre>f: got POST working on 2.0 proxy -- it was awful</pre>
+<pre>r: got WFS tool layer in place; search tag lib built</pre>
+<pre>w: made a lot of styling progress; worked on icon search [doctor's appt]</pre>
+<pre>t: layers working better; icon bar has icons now</pre>
+<pre>m: started on the great project rewrite 2.0; got layers bar largely working</pre>
+<pre>9.28.09:</pre>
+<pre><br /></pre>
+<pre>f: read up on mocks; SBIR brunch</pre>
+<pre>r: remaining domain-classes set up</pre>
+<pre>w: javascript testing done; started proxy; started geo-ing gorm</pre>
+<pre>t: really put bridges to bed; created many domain classes (grails!)</pre>
+<pre>m: split and polished bridges database, got bridge icons on map</pre>
+<pre>9.21.09:</pre>
+<pre><br /></pre>
+<pre>f: working with bridge data and databases</pre>
+<pre>r: found tons of bridge data, imported it; read up on TDD</pre>
+<pre>w: completed mrsid scripting</pre>
+<pre>t: [doctor's appt], started EOC project; TDD; extracting WKT from AUX</pre>
+<pre>m: reading up on grails styling, ajax</pre>
+<pre>9.14.09:</pre>
+<pre><br /></pre>
+<pre>f: meeting about pulling stennis guys onto EOC; performance reviews</pre>
+<pre>r: grails tutorials; designing new UI; OSM styling (again)</pre>
+<pre>w: writing performance review; finishing new database design</pre>
+<pre>t: started planning grails rewrite!</pre>
+<pre>m: [ working remotely ] researching groovy and mvc</pre>
+<pre>9.7.09 :</pre>
+<pre><br /></pre>
+<pre>f: [ back in michigan for mom's birthday ]</pre>
+<pre>r: [ back in michigan for mom's birthday ]</pre>
+<pre>w: styling OSM, reprojecting SID, groovy/grails research</pre>
+<pre>t: got specs from brandon; looking for OSM alternatives</pre>
+<pre>m: put final finishes touches on RFS project, wrote handover notes</pre>
+<pre>8.31.09:</pre>
+<pre><br /></pre>
+<pre>f: finishing touches on RFS project, correcting bugs</pre>
+<pre>r: completed logout logic, integrating styling, helped yancy and brian</pre>
+<pre>w: got specs figured out; got brian and yancy working on RFS</pre>
+<pre>t: finished writing login code, with roles, for person and request</pre>
+<pre>m: started writing login code; [doctors appointment]</pre>
+<pre>8.24.09:</pre>
+<pre><br /></pre>
+<pre>f: completed most of the main RFS form</pre>
+<pre>r: integrating UI and my grails backend on RFS</pre>
+<pre>w: got grails app up and running, complete with persistence</pre>
+<pre>t: met with vance at stennis; decided on grails</pre>
+<pre>m: got hibernate compiling, just doesn't work within a page</pre>
+<pre>8.17.09:</pre>
+<pre><br /></pre>
+<pre>f: trying to get hibernate working</pre>
+<pre>r: gave up on maven, got spring example up and running</pre>
+<pre>w: researching spring, hibernate, and maven for RFS</pre>
+<pre>t: meeting at stennis about RFS</pre>
+<pre>m: put OSM into the geo-demo4 database</pre>
+<pre>8.10.09:</pre>
+<pre><br /></pre>
+<pre>f: searched for OSM styling</pre>
+<pre>r: helped get Brian's build scripts up and running</pre>
+<pre>w: investigated nowcoast data services</pre>
+<pre>t: looked for weatherbug/layer alternatives; helped get postgis up</pre>
+<pre>m: exhausted online resources for GeoWebCache</pre>
+<pre>8.3.09:</pre>
+<pre><br /></pre>
+<pre>f: trying to get yahoo's base maps working with the project</pre>
+<pre>r: researching turning WFS and WMS into a single picture</pre>
+<pre>w: [day off]</pre>
+<pre>t: Colorized main demo layers.</pre>
+<pre>m: one script now handles multiple file types</pre>
+<pre>7.27.09:</pre>
+<pre><br /></pre>
+<pre>f: figured out the best way to push shapefiles to postgres</pre>
+<pre>r: finished basic style template; imported new shapefile</pre>
+<pre>w: added text that follows roads, different styles at different zooms</pre>
+<pre>t: downloader handles shapefiles for real; started on SLDs</pre>
+<pre>m: made improvements to kmz downloader to handle shapefiles</pre>
+<pre>7.20.09:</pre>
+<pre><br /></pre>
+<pre>f: got cron job running, allowing us to unzip and serve KMZs</pre>
+<pre>r: decided to not go with OID or BYTEA types, jetty is better</pre>
+<pre>w: researching cron and downloading alternatives</pre>
+<pre>t: finished shapefile service; went to scrum/agile meeting</pre>
+<pre>m: wrote shell script, tried to connect to java</pre>
+<pre>7.13.09:</pre>
+<pre><br /></pre>
+<pre>f: figuring out of to unzip files on the server</pre>
+<pre>r: meeting at Jackson, Mississippi, got additional requirements</pre>
+<pre>w: getting ready for demo; added layers; building redundancies</pre>
+<pre>t: finished cleaning up Stennis's mess; added miss. layers</pre>
+<pre>m: finished up async monad; stennis box went down; new box config</pre>
+<pre>7.6.09 :</pre>
+<pre><br /></pre>
+<pre>f: [4th of July weekend PTO]</pre>
+<pre>r: got jboss set up on new machine</pre>
+<pre>w: started async monad work</pre>
+<pre>t: presented findings to group</pre>
+<pre>m: Can create derived variables, but no netcdf and not with our files</pre>
+<pre>6.29.09:</pre>
+<pre><br /></pre>
+<pre>f: [CodeStock]</pre>
+<pre>r: More trying with ferret; played with a lot of config files and LAS</pre>
+<pre>w: Trying to get ferret working through the LAS GUI.</pre>
+<pre>t: More trying to get ferret working.</pre>
+<pre>m: Reinstalled ferret, played with config files, still no ferret/opendap success</pre>
+<pre>6.22.09:</pre>
+<pre><br /></pre>
+<pre>f: Got ferret making pictures, and pointing at remote data.</pre>
+<pre>r: big meeting with doug; everyone has ubuntu; trying to get NetCDF subsetting working</pre>
+<pre>w: got ferret up and running</pre>
+<pre>t: got tomcat, java, thredds, and part of ferret running on my machine</pre>
+<pre>m: got Ubuntu running on my work machine</pre>
+<pre>6.15.09:</pre>
+<pre><br /></pre>
+<pre>f: researched for new project: opendap, ferret, thredds</pre>
+<pre>r: permalink functionality completely works</pre>
+<pre>w: adding permalink functionality</pre>
+<pre>t: tried to find good data sources that avoid KMZs</pre>
+<pre>m: tried to get kmz working with openlayers</pre>
+<pre>6.8.09:</pre>
+<pre><br /></pre>
+<pre>f: trying to get kml working</pre>
+<pre>r: base layers are treated seperately from other layers in much code</pre>
+<pre>w: added FL utilities; fixed checkboxes; added events enum</pre>
+<pre>t: [home] refactored functions here and there; looking to nexrad</pre>
+<pre>m: [home] fixed getJson error with IE.  Added functions to Aether.Utilities.</pre>
+<pre>6.1.09:</pre>
+<pre><br /></pre>
+<pre>f: best day ever: refactored the whole project to use namespaces</pre>
+<pre>r: debugging: no google error on load, figured out why it's hanging (firebug)</pre>
+<pre>w: integrated with vance's new UI</pre>
+<pre>t: finally solved those proxy problems; everything can run remotely now</pre>
+<pre>m: [vacation, memorial day]</pre>
+<pre>5.25.09:</pre>
+<pre><br /></pre>
+<pre>f: [vacation, at The Grand]</pre>
+<pre>r: fixing bugs in the proxy; turns out the filter parameter needs to be encoded in the proxy</pre>
+<pre>w: working through proxy issues: how do I know if should reach the test or production database from the remote services?</pre>
+<pre>t: local can reach the remote database; finished setting up gForge trackers</pre>
+<pre>m: worked on database fields with yancy; reached failure point with remote database access</pre>
+<pre>5.18.09:</pre>
+<pre><br /></pre>
+<pre>f: turned notecard wall into gForge; local project can almost talk to remote database and geoserver</pre>
+<pre>r: ESRI conference/training; met Bruce and Roy</pre>
+<pre>w: ESRI conference/training</pre>
+<pre>t: ESRI conference/training</pre>
+<pre>m: project is more IE compatible; read up on functional; started gForge</pre>
+<pre>5.11.09:</pre>
+<pre><br /></pre>
+<pre>f: [Emily's wedding]</pre>
+<pre>r: got the toolbar selectors working; insane amounts of progress</pre>
+<pre>w: icons names and pictures in toolbar, dynamically created from database</pre>
+<pre>t: refactored; can read in icon metadata</pre>
+<pre>m: created icon database table; can draw icons on the map</pre>
+<pre>5.4.09:</pre>
+<pre><br /></pre>
+<pre>f: looked into 2525C specs; left a bit early for jazz fest</pre>
+<pre>r: users can now create, save, and load icons, complete with styles</pre>
+<pre>w: styles (icons) can be saved to the database, and pulled back with a response</pre>
+<pre>t: fixed toolbar problem; briefed Yancy on the project</pre>
+<pre>m: worked on a bug in the way the toolbar dislplays; yancy's first day</pre>
+<pre>4.27.09:</pre>
+<pre><br /></pre>
+<pre>f: finished scrum wall; researched dynamic symbolizers and catalogs</pre>
+<pre>r: meeting with Keith; wrote up perfomance review; read about catalogs</pre>
+<pre>w: set up scrum notecard system; figured out how to save/load styles</pre>
+<pre>t: used style map on layers; worked towards styling based on context</pre>
+<pre>m: tried various methods of managing large WFS returns</pre>
+<pre>4.20.09:</pre>
+<pre><br /></pre>
+<pre>f: Looked into limiting geoserver WFS response sizes.</pre>
+<pre>r: Added base layers; found a whole new set of problems</pre>
+<pre>w: got the projections to work, though I'm not sure how</pre>
+<pre>t: tried to get base layer projections to match overlay projections</pre>
+<pre>m: imported shapefiles into geoserver from the DVD</pre>
+<pre>4.13.09:</pre>
+<pre><br /></pre>
+<pre>f: worked from home for 2 hours on using open street map</pre>
+<pre>r: started adding icon funtionality</pre>
+<pre>w: I can save both lines and points to the database</pre>
+<pre>t: redesigned how the user will interact with filters</pre>
+<pre>m: worked with BBOX filters</pre>
+<pre>4.6.09:</pre>
+<pre><br /></pre>
+<pre>f: learned all about OpenLayers strategies; tried to fix filters problem</pre>
+<pre>r: diagnosed problem with filters; SOA meeting presented by Glenn and Brian</pre>
+<pre>w: can save additional feature parameters to the database</pre>
+<pre>t: can save and load features; renamed table; set big picture TO DO</pre>
+<pre>m: user-created features are now stored in a database, not in a shapefile</pre>
+<pre>3.30.09:</pre>
+<pre><br /></pre>
+<pre>f: interviewed Yancy and Kevin; looked for layers online</pre>
+<pre>r: researched how to add datastores to geoserver from the client</pre>
+<pre>w: Proxy to Geoserver now accepts POST data; can save WFS's</pre>
+<pre>t: continued to work on the proxy problem</pre>
+<pre>m: found new problems with the proxy arrangement</pre>
+<pre>3.23.09:</pre>
+<pre><br /></pre>
+<pre>f: looked for java proxy; got one working</pre>
+<pre>r: discovered that I need a proxy to use WFS-T; FEDSEC meeting</pre>
+<pre>w: researched WFS-T; took 6 hours PTO</pre>
+<pre>t: finally restructured correctly -- using wmcs instead of layer parameters</pre>
+<pre>m: fixed bugs and refactored code -- added comments</pre>
+<pre>3.16.09:</pre>
+<pre><br /></pre>
+<pre>f: added save layer UI elements; worked from home</pre>
+<pre>r: fixed/refactored how the load and check layers works</pre>
+<pre>w: worked on race conditions with loading layers and check boxes</pre>
+<pre>t: I load layers from the database; populate list; show and hide them at will</pre>
+<pre>m: started adding "load layer" feature</pre>
+<pre>3.9.09:</pre>
+<pre><br /></pre>
+<pre>f: interviewed David at CERN; said "no"</pre>
+<pre>r: geoserver works with the prototype from a remote machine</pre>
+<pre>w: successfully merged prototype with UI; started putting geoserver on the stennis server</pre>
+<pre>t: prototype can reach the database on the stennis server; played with WFSs</pre>
+<pre>m: I can draw shapes on the map</pre>
+<pre>3.2.09:</pre>
+<pre><br /></pre>
+<pre>s: researched adding annotations, bash, other open layers features</pre>
+<pre>f: solved postgres driver problem; trying to connect prototype to database</pre>
+<pre>r: Aether works with jboss on the server; started fighting the database</pre>
+<pre>w: decided to move to jboss 4; made javascript event driven</pre>
+<pre>t: [mardi gras]</pre>
+<pre>m: fought jboss 5 port collision errors on server</pre>
+<pre>2.23.09:</pre>
+<pre><br /></pre>
+<pre>f: started moving the prototype to the stennis server</pre>
+<pre>r: fought callback problems with my demo; all hands meeting</pre>
+<pre>w: got the demo back into a working state; prepared to move to stennis server</pre>
+<pre>t: decided that hibernate just isn't going to work</pre>
+<pre>m: fought with hibernate at home, learned that the problem's with JBoss</pre>
+<pre>2.16.09:</pre>
+<pre><br /></pre>
+<pre>f: fought with hibernate; worked from home for 2nd half of day</pre>
+<pre>r: experimented with faces, hibernation, web services</pre>
+<pre>w: moved project to use Java EE 5...; or rather, moving...</pre>
+<pre>t: my app can pull data in from metoc's; found more bad noaa data</pre>
+<pre>m: learned about IOOS and looked into it; learned it's all it beta</pre>
+<pre>2.9.09:</pre>
+<pre><br /></pre>
+<pre>f: diplayed PostGIS shapefile in openlayers</pre>
+<pre>r: pushed a shapefile into PostGIS</pre>
+<pre>w: set up geoserver; it can serve up shapefiles; i can read them</pre>
+<pre>t: more data sources; learn more about GIS services; research more sources</pre>
+<pre>m: found more data sources -- there's not much weather stuff out there</pre>
+<pre>2.2.09:</pre>
+<pre><br /></pre>
+<pre>f: can load, save, rename maps; refactored code</pre>
+<pre>r: worked on base layer bug; can save and load multiple maps</pre>
+<pre>w: got a demo working with save and load buttons; big and happy deal</pre>
+<pre>t: everybody plays together nice; started getting another demo going</pre>
+<pre>m: tried to get Friday's tricks to work with JBoss and PostgreSQL</pre>
+<pre>1.26.09:</pre>
+<pre><br /></pre>
+<pre>f: AMAZING things with setting up PostgreSQL, tomcat, and netbeans</pre>
+<pre>r: looked into MapGuide, MapFish, and others</pre>
+<pre>w: got the PHP sample of MapGuide to run</pre>
+<pre>t: made summary of GIS book; found the magic that is OSGeo</pre>
+<pre>m: finished reading the GIS book</pre>
+<pre>1.19.09:</pre>
+<pre><br /></pre>
+<pre>f: installed more programs; read gis book; logo design brainstorming</pre>
+<pre>r: meeting with Paul; installed stuff on laptop</pre>
+<pre>w: got aircards, DDS SPAWAR meeting, talked to dave</pre>
+<pre>t: MJ fired; got laptops to set up</pre>
+<pre>m: read emails, set up screen, started reading GIS book</pre>
+<pre>1.12.09:</pre>
+<pre><br /></pre>
+<pre>t: finished writing up "why our processes make me sad"; left on vacation</pre>
+<pre>m: set up 401(k); looked up terms from before; got ready for vacation</pre>
+<pre>12.22.08:</pre>
+<pre><br /></pre>
+<pre>f: meeting with Keith at CERN; party at Keith's</pre>
+<pre>r: fixing the ajax timing issue, finally</pre>
+<pre>w: rewrote php to write to file; health benefits meeting</pre>
+<pre>t: big discussion with drew about user groups and workflow</pre>
+<pre>m: tried to solve the time-out errors in my sample app</pre>
+<pre>12.15.08:</pre>
+<pre><br /></pre>
+<pre>f: php app can read in and display rss feeds</pre>
+<pre>r: worked from home on account of the snow</pre>
+<pre>w: edited press release; loaded kml file generated by php</pre>
+<pre>t: I can read in RSS feeds now using PHP, and parse the XML</pre>
+<pre>m: completed API design documentation, pulled data from NWS</pre>
+<pre>12.8.08:</pre>
+<pre><br /></pre>
+<pre>f: designed project API and started creating documentation</pre>
+<pre>r: defined project scope internally -- we build KML layers of weather</pre>
+<pre>w: made pretty website container for my google maps app</pre>
+<pre>t: looking for KML "save view" capability; building 3 evacuation</pre>
+<pre>m: starting to think about duplicating google maps' "my maps" weather</pre>
+<pre>12.1.08:</pre>
+<pre><br /></pre>
+<pre>f: worked from home on the rest of the KML examples</pre>
+<pre>r: [thanksgiving]</pre>
+<pre>w: finished most of the basic KML examples</pre>
+<pre>t: developer account works; more shared drive; KML examples</pre>
+<pre>m: decided on KML and google earth/maps; played with ftp and drives</pre>
+<pre>11.24.08:</pre>
+<pre><br /></pre>
+<pre>f: started at stennis, paintball</pre>
+<pre>r: created program to test how fast web pages load</pre>
+<pre>w: completed needs list, drew and vance helped, vance prettied it up</pre>
+<pre>t: overview of several projects at stennis; started making needs list</pre>
+<pre>m: looked up terms heard at stennis, thoughts on database design...</pre>
+<pre>11.17.08:</pre>
+<pre><br /></pre>
+<pre>f: 401k meetings at Stennis, map context overview</pre>
+<pre>r: ESRI samples... (actual data lost)</pre>
+<pre>w: ESRI samples... (actual data lost)</pre>
+<pre>t: worked from home on ESRI javascript API, OGC terms</pre>
+<pre>m: researched all the terms I didn't get from the FRI meeting; bitmaps</pre>
+<pre>11.10.08:</pre>
+<pre><br /></pre>
+<pre>f: meeting with UNO people; Drew explained NOP to MJ and me</pre>
+<pre>r: prepared for performance reviews -- resume and survey</pre>
+<pre>w: ERSI has A LOT of products.  Started sorting out what they all do.</pre>
+<pre>t: researched how ESRI can pull data from all those sources</pre>
+<pre>m: rode bike to work; researched NWS, NOAA, NAVO, CNMOC, and GOES-12</pre>
+<pre>11.3.08:</pre>
+<pre><br /></pre>
+<pre>f: meeting at Stennis</pre>
+<pre>r: worked on SVG animation (javascript practice)</pre>
+<pre>w: talked to MJ; read up on things -- generally -- and SVG</pre>
+<pre>t: finished ERSI white papers; made simple SVG animation; flex</pre>
+<pre>m: first meeting with ASSOC group; more reading about ERSI SOA</pre>
+<pre>10.27.08:</pre>
+<pre><br /></pre>
+<pre>f: continued learning everything about ArcGIS</pre>
+<pre>r: requested vacation; fixed voicemail, virus definition file; started learning everything about ArcGIS</pre>
+<pre>w: compiled studies showing 2 monitors = productivity; ...</pre>
+<pre>t: set up my cube with 43 folders; completed online training</pre>
+<pre>m: started moving into SPAWAR location; got computer access</pre>
+<pre>10.20.08:</pre>
+<pre><br /></pre>
+<pre>f: finally got SAX and DOM xml parsing working on the server</pre>
+<pre>r: tried client and server ways of parsing xml</pre>
+<pre>w: pulled in yahoo map data, started working on how to parse weather xml</pre>
+<pre>t: fixed IE chat bugs, pulled in yahoo weather data through RSS feed</pre>
+<pre>m: got a chat client up and running using AJAX</pre>
+<pre>10.13.08:</pre>
+<pre><br /></pre>
+<pre>f: got CAC, got the subversion server up and running, started learning jQuery</pre>
+<pre>r: tried real hard to get a remote code management server up and running</pre>
+<pre>w: training at UNO, mock Web Applications and JSF with NetBeans</pre>
+<pre>t: started java study guides, starting building demo application</pre>
+<pre>m: finished the java design patterns book</pre>
+<pre>10.6.08:</pre>
+<pre><br /></pre>
+<pre>f: read through first 200pages of java design patterns book</pre>
+<pre>r: Stennis site; intro to NOP, code review</pre>
+<pre>w: HR meeting with Susan and exploration of portal, webmail</pre>
+<pre>10.1.08:</pre>
+<pre></pre>
+</div><h2 class='header'>fun ideas</h2><div style='display: none;'>
+<pre>- play racquetball with dustin</pre>
+<pre>  - tennis shoes/white socks</pre>
+<pre>  - workout shirt</pre>
+<pre>  - workout shorts</pre>
+<pre>  - small towel</pre>
+<pre>  - deodorant</pre>
+<pre>  - small shampoo</pre>
+<pre>  - work clothes</pre>
+<pre>- post a ping pong tournament board</pre>
+<pre></pre>
+</div><h2 class='header'>How-tos</h2><div style='display: none;'>
+<pre></pre>
+<h3 class='header'>:howto checkout from gforge</h3><div style='display: none;'>
+<pre>svn checkout http://gforge5.diamonddata.com/svn/geoatmo</pre>
+<pre></pre>
+</div><h3 class='header'>:howto enable caching on geoserver</h3><div style='display: none;'>
+<pre>This</pre>
+<pre>  http://example.com:8080/geoserver/wms</pre>
+<pre>should be changed to this</pre>
+<pre>  http://example.com:8080/geoserver/gwc/service/wms</pre>
+<pre></pre>
+</div><h3 class='header'>:howto geo-enable a database (postgis)</h3><div style='display: none;'>
+<pre>createlang plpgsql <yourdatabase></pre>
+<pre>psql -f postgis/postgis.sql -d <your_database></pre>
+<pre></pre>
+</div><h3 class='header'>:howto transfer a postgres database</h3><div style='display: none;'>
+<pre>-- create a copy of entire database</pre>
+<pre>pg_dump -U postgres testgis > testgis.sql</pre>
+<pre><br /></pre>
+<pre>-- alternately, create a copy of just a table</pre>
+<pre>pg_dump -U postgres -t tableName testgis > testgis.sql</pre>
+<pre><br /></pre>
+<pre>-- alternately, create a copy of just a table, just the data</pre>
+<pre>pg_dump -U postgres -t tableName -a testgis > testgis.sql</pre>
+<pre><br /></pre>
+<pre>-- uber specific example of the copy</pre>
+<pre>pg_dump -U postgres -t bridges -a --column-inserts postgis > partialBridgesNov3.sql</pre>
+<pre><br /></pre>
+<pre>-- load the copy</pre>
+<pre>psql -U postgres -d testgis -f testgis.sql</pre>
+<pre></pre>
+</div><h3 class='header'>:howto put shapefiles into postgres</h3><div style='display: none;'>
+<pre>The shp2pgsql command will create the raw SQL and save it to a file.</pre>
+<pre>The sql will create and populate the given table.</pre>
+<pre><br /></pre>
+<pre>  shp2pgsql national_shapefile_obs.shp shapetest > shapetest.sql</pre>
+<pre><br /></pre>
+<pre>The psql query to push that file into the database is this (where</pre>
+<pre>postgres=user, postgis=database):</pre>
+<pre><br /></pre>
+<pre>  psql -U postgres -d postgis -f shapetest.sql</pre>
+<pre></pre>
+</div><h3 class='header'>:howto restart apache on stennis</h3><div style='display: none;'>
+<pre>/usr/sbin/apachectl restart</pre>
+<pre></pre>
+</div><h3 class='header'>:howto restart jboss</h3><div style='display: none;'>
+<pre>/sbin/service jboss stop</pre>
+<pre><br /></pre>
+<pre>ps -ef | grep jboss</pre>
+<pre>" kill all of jboss's processes</pre>
+<pre><br /></pre>
+<pre>/sbin/service jboss start</pre>
+<pre></pre>
+</div></div><h2 class='header'>HR</h2><div style='display: none;'>
+<pre></pre>
+<h3 class='header'>interview flow</h3><div style='display: none;'>
+<pre>1. Introductions, interview outline</pre>
+<pre>2. Previous work, projects, interests</pre>
+<pre>3. Technical Questions (verify knowledge of language, libraries, software development)</pre>
+<pre>4. Software Problems</pre>
+<pre>5. Logic Puzzles (optional)</pre>
+<pre>6. Wrap up, questions from candidate</pre>
+<pre></pre>
+</div><h3 class='header'>interview questions: general developer</h3><div style='display: none;'>
+<pre>- What is UML? Why use it (or something like it)? Weaknesses?</pre>
+<pre>- What is OO/benefits of OO? Class? Object? Superclass? Static member? Is-a/has-a (and why)?</pre>
+<pre>- What is Abstract base class (why use)? Polymorphism? Interfaces?</pre>
+<pre>- Does java have pointers? (Yes, as object reference variables.)</pre>
+<pre>- Can you leak memory in java? (Yes, by holding on to variable references.)</pre>
+<pre>- What are primitive types? Examples?</pre>
+<pre>- How to do multithreaded programming in java?</pre>
+<pre>- How to traverse a collection in java? (For each, iterator)</pre>
+<pre>- What is JMS? EJB? Servlet/jsp (and differences)?</pre>
+<pre>- What is database normalization, and why? (To eliminate redundancy.)</pre>
+<pre>- What's your philosophy on documentation?</pre>
+<pre>- Why is source control important?</pre>
+<pre>- Why is testing important?</pre>
+<pre>- Difference between unit and integration testing?</pre>
+<pre>- How do you maintain code quality (while writing, over time, maintenance)?</pre>
+<pre>- What measures do you take to make sure deadlines are met?</pre>
+<pre>- Describe MVC.</pre>
+<pre>- What is refactoring?  When would you do it?  How would you do it safely?</pre>
+<pre>- Describe a design pattern other than singleton. (Builder, adapter, decorator, factory.)</pre>
+<pre>- What is the last technical book you’ve read?</pre>
+<pre></pre>
+</div><h3 class='header'>interview questions: web developer</h3><div style='display: none;'>
+<pre>things to be knowledgable about:</pre>
+<pre>- jquery (or similar)</pre>
+<pre>  - why use it? why NOT use it?</pre>
+<pre>  - What's the most magical thing (to you)?</pre>
+<pre>- javascript</pre>
+<pre>  - is it an OO language (yes-ish/no-ish, prototype based)</pre>
+<pre>  - how to set up/what are namespaces (**)?</pre>
+<pre>  - what is a closure (**)?</pre>
+<pre>  - how to create a list/hash</pre>
+<pre>  - what's the difference between objects and hashes?</pre>
+<pre>- css</pre>
+<pre>  - different types of selectors (class vs id vs nested)</pre>
+<pre>  - how do you set background color of a div? (do on board)</pre>
+<pre>  - what does it mean to float an element?</pre>
+<pre>- html</pre>
+<pre>  - what is the DOM?</pre>
+<pre>  - difference between POST and GET?</pre>
+<pre>  - when do you not have to close tags?</pre>
+<pre>  - how do you set up a table?</pre>
+<pre>  - what are hidden fields? why would you use them?</pre>
+<pre>  - when would you use tables vs divs/floats?</pre>
+<pre>- jsp/freemarker/php</pre>
+<pre>  - what are taglibs</pre>
+<pre>- usability design</pre>
+<pre>- ajax</pre>
+<pre>  - is it synchronous or asynchronous</pre>
+<pre>  - how it is different from reloading a page?</pre>
+<pre>- REST vs SOAP (*)</pre>
+<pre>- GET/POST/PUT/DELETE:</pre>
+<pre>  - what's the difference in meaning?</pre>
+<pre>  - when would you use one over the others?</pre>
+<pre>- web development tooling (firebug?)</pre>
+<pre>- MVC, experience with frameworks</pre>
+<pre>  - why are MVCs used? what problems arise from not using one?</pre>
+<pre>  - what are some MVC frameworks?</pre>
+<pre>  - what logic goes into a controller? another service?</pre>
+<pre>- how to make a cross-browser web page?</pre>
+<pre>  - IE hacks? You favorite/worst?</pre>
+<pre>  - how to test that you've succeeded?</pre>
+<pre>- security concerns</pre>
+<pre>  - cross-site scripting</pre>
+<pre>  - injection attacks</pre>
+<pre>- validation</pre>
+<pre>  - client side vs server side?</pre>
+<pre>  - how to do client side? (html restrictions OR javascript checks)</pre>
+<pre>  - how to do server side?</pre>
+<pre><br /></pre>
+<pre>problems:</pre>
+<pre>1. how to make rounded corners? (images, CSS3?)</pre>
+<pre>2. how to set up a 2 column layout</pre>
+<pre>3. validation of an html form</pre>
+<pre>  - regex</pre>
+<pre>  - server vs client-side validation</pre>
+<pre></pre>
+<h4 class='header'>evens problem to do on board</h4><div style='display: none;'>
+<pre>write javascript function to take a list of integers, and return the</pre>
+<pre>even ones. frameworks allowed.</pre>
+<pre><br /></pre>
+<pre>  function evens(list) {</pre>
+<pre>    return list.filter(function(elem) { return isEven(elem); });</pre>
+<pre>  }</pre>
+<pre><br /></pre>
+<pre>  function evens_UglyWay(list) {</pre>
+<pre>    var toReturn = [];</pre>
+<pre>    /** ugly</pre>
+<pre>    for( var i = 0; i++; i < length(list) ) {</pre>
+<pre>      if( isEven(n[i]) ) {</pre>
+<pre>        toReturn.push(n[i]);</pre>
+<pre>      }</pre>
+<pre>    }</pre>
+<pre>    */</pre>
+<pre>    // prettier way</pre>
+<pre>    for( n in list ) {</pre>
+<pre>      if( isEven(n) ) {</pre>
+<pre>        toReturn.push(n);</pre>
+<pre>      }</pre>
+<pre>    }</pre>
+<pre>    return toReturn;</pre>
+<pre>  }</pre>
+<pre><br /></pre>
+<pre>  function isEven(elem) {</pre>
+<pre>    return elem % 2 == 0;</pre>
+<pre>  }</pre>
+<pre></pre>
+</div></div></div><h2 class='header'>OpenCOP</h2><div style='display: none;'>
+<pre></pre>
+<h3 class='header'>:howto login to WebEoc</h3><div style='display: none;'>
+<pre>links</pre>
+<pre>- url: http://lawebeoc.ohsep.louisiana.gov/eoc7/</pre>
+<pre>- api: http://lawebeoc.ohsep.louisiana.gov/eoc7/api.asmx</pre>
+<pre>- wsdl: http://lawebeoc.ohsep.louisiana.gov/eoc7/api.asmx?wsdl</pre>
+<pre><br /></pre>
+<pre>credentials (EocConfig)</pre>
+<pre>- username: OpenCop</pre>
+<pre>- password: p@ssword</pre>
+<pre>- position: Geocent Test</pre>
+<pre><br /></pre>
+<pre>the data (WebEocSync)</pre>
+<pre>- board: Geocent Test Board</pre>
+<pre>- views: "Display" and "List"</pre>
+<pre>- incident: Geocent Test Incident</pre>
+<pre></pre>
+</div><h3 class='header'>todo list</h3><div style='display: none;'>
+<pre>- upgrades</pre>
+<pre>  - postgres</pre>
+<pre>  - postgis</pre>
+<pre>- dashboard</pre>
+<pre>- dynamic feature manager</pre>
+<pre>- pretty admin page</pre>
+<pre></pre>
+</div></div><h2 class='header'>NITES Next</h2><div style='display: none;'>
+<pre></pre>
+<h3 class='header'>:howto re-index compass/lucene</h3><div style='display: none;'>
+<pre>http://sjm.test.com:8080/catalog/admin/init, click link</pre>
+<pre></pre>
+</div><h3 class='header'>:howto "hot deploy" FTLs</h3><div style='display: none;'>
+<pre><DjJazzyJosh> davidl340:</pre>
+<pre>  Do I have to do a full build with instantGratification enabled before</pre>
+<pre>  I can just build the WebUI with instantGratification?</pre>
+<pre><br /></pre>
+<pre><davidl340></pre>
+<pre>  You got to do this:</pre>
+<pre>  - delete your NEPOApplication.ear from the deploy folder.</pre>
+<pre>  - Goto /home/dlatil/projects/NEPO/nepotrunk/EnterpriseApplications/NEPOApplication/pom.xml</pre>
+<pre>  - comment out the activeByDefault = true thing in the deployAsEar profile</pre>
+<pre>  - uncomment the activateByDefault under the deployExploded profile</pre>
+<pre>  - so basically, all it this does is deploy the ear exploded</pre>
+<pre>  - you'd have to build at least once again</pre>
+<pre></pre>
+</div><h3 class='header'>:howto setup WSS</h3><div style='display: none;'>
+<pre>- do this: http://download.oracle.com/docs/cd/E19681-01/820-4803/ghuqg/index.html</pre>
+<pre>  - In step #7, follow the first option</pre>
+<pre>  - Steps after #7 are probably done already</pre>
+<pre>  - this file is key: ~/J2EE_AGENT_HOME/j2ee_agents/jboss_v42_agent/Agent_001/config/OpenSSOAgentBootstrap.properties</pre>
+<pre></pre>
+</div><h3 class='header'>:howto setup SoapUI project with WSS</h3><div style='display: none;'>
+<pre>steps:</pre>
+<pre>- new SoapUI project</pre>
+<pre>- point at fully qualified wsdl under source control (both)</pre>
+<pre>- double-click binding, set endpoint to fully qualified service endpoint (both)</pre>
+<pre>- set WSS TimeToLive to 2000 for a particular request</pre>
+<pre>- set WSS-Password Type to PasswordText for a particular request</pre>
+<pre>- in auth, set username and password for a particular request</pre>
+<pre></pre>
+</div><h3 class='header'>:ref unique subscription statuses in mockup</h3><div style='display: none;'>
+<pre>- "INVALID - Deleted" (never shown)</pre>
+<pre>- "INVALID - Expired" -> "Expired"</pre>
+<pre>- "CANCELLED"</pre>
+<pre>- "ACTIVE"</pre>
+<pre>- "ENDED - Delivery Failure"</pre>
+<pre>- "ENDED - No Source"</pre>
+<pre>- "ENDED - Source Cancelled"</pre>
+<pre></pre>
+</div><h3 class='header'>:ref wsdl locations</h3><div style='display: none;'>
+<pre>- /home/thanthese/NN/04/Common/WSArtifacts/src/main/resources/wsdl/NEPOCal.wsdl</pre>
+<pre>- /home/thanthese/NN/04/Common/WSArtifacts/src/main/resources/wsdl/NEPOcSub.wsdl</pre>
+<pre></pre>
+</div><h3 class='header'>:ref web service endpoints</h3><div style='display: none;'>
+<pre>- http://sjm.test.com:8080/WebServices/NEPOCalWebService</pre>
+<pre>- http://sjm.test.com:8080/WebServices/NEPOcSubService</pre>
+<pre></pre>
+</div><h3 class='header'>:ref ideas on how to make SoapUI not need a session:</h3><div style='display: none;'>
+<pre>- get the existing service to return email consistently (fix existing bug)</pre>
+<pre>- use another OpenSSO function</pre>
+<pre>- use REST calls to OpenSSO</pre>
+<pre>- SAML spec's SOAP binding</pre>
+<pre></pre>
+</div><h3 class='header'>todo stack</h3><div style='display: none;'>
+<pre><br /></pre>
+<pre><br /></pre></div></div></div>
 
 </body>
 </html>
