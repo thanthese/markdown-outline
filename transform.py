@@ -18,25 +18,37 @@ yet more text
 # last header
 last text"""
 
+START_SEC = "<div style='display: none;'>"
+END_SEC = "</div>"
+
+# START_SEC = "("
+# END_SEC = ")"
+
 lines = testdoc.split("\n")
-headerStack = 0
+stack = 0
 for i in range(0, len(lines)):
   depth = headerDepth(lines[i])
   if depth > 0:
-    if depth < headerStack:
-      lines[i] = lines[i] + ")"*(headerStack - depth )
-    elif depth == headerStack:
-      lines[i] = ")" + lines[i] + "("
-    elif depth > headerStack:
-      lines[i] = "("*(depth - headerStack) + lines[i]
-    headerStack = depth
+    header = wrapHeader(lines[i])
+    if depth < stack:
+      lines[i] = END_SEC * (stack - depth + 1) + header + START_SEC
+    elif depth == stack:
+      lines[i] = END_SEC + header + START_SEC
+    elif depth > stack:
+      lines[i] = header + START_SEC * (depth - stack)
+    stack = depth
 
-lines[len(lines) - 1] = lines[len(lines) - 1] + ")"*headerStack
+lastIndex = len(lines) - 1
+lines[lastIndex] = lines[lastIndex] + END_SEC * stack
 
-lines
+print "\n".join(lines)
+
+def wrapHeader(text):
+  depth = headerDepth(text)
+  return "<h%d class='header'>%s</h%d>" % (depth, text, depth)
 
 def headerDepth(line):
-  if line[0:6] == "######":
+  if   line[0:6] == "######":
     return 6
   elif line[0:5] == "#####":
     return 5
@@ -50,12 +62,3 @@ def headerDepth(line):
     return 1
   else:
     return 0
-
-print headerDepth("###### 6")
-print headerDepth("##### 5")
-print headerDepth("#### 4")
-print headerDepth("### 3")
-print headerDepth("## 2")
-print headerDepth("# 1")
-print headerDepth("0")
-
