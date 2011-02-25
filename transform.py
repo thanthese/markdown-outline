@@ -1,11 +1,18 @@
 ##
-# Stephen Mann
-# Feb 2011
+# Stephen Mann Feb 2011
 #
 # This file is, by design, painfully specific to my needs.  It will transform
 # ~/Dropbox/all-notes.txt into ~/Dropbox/view-notes.html.  The latter file will
-# be a read only, foldable view of the former.
+# be a read only, foldable view of the former.  Only valid markdown files, with
+# nicely incrementing headers, are parsed correctly.
 #
+
+# todo
+# - pretty styles
+# - folded vs unfolded header styles
+# - print out pretty html doc
+# - real files input/output
+# - add onsave hook into vim
 
 testdoc = """# header 1
 some text
@@ -18,33 +25,29 @@ yet more text
 # last header
 last text"""
 
-START_SEC = "<div style='display: none;'>"
-END_SEC = "</div>"
+START_DIV = "<div style='display: none;'>"
+END_DIV = "</div>"
 
-# START_SEC = "("
-# END_SEC = ")"
+def addDivs(text):
+  lines = text.split("\n")
+  stack = 0
+  for i in range(0, len(lines)):
+    depth = headerDepth(lines[i])
+    if depth > 0:
+      header = wrapHeader(lines[i], depth)
+      if depth > stack:
+        lines[i] = header + START_DIV
+      elif depth == stack:
+        lines[i] = END_DIV + header + START_DIV
+      elif depth < stack:
+        lines[i] = END_DIV * (stack - depth + 1) + header + START_DIV
+      stack = depth
 
-lines = testdoc.split("\n")
-stack = 0
-for i in range(0, len(lines)):
-  depth = headerDepth(lines[i])
-  if depth > 0:
-    header = wrapHeader(lines[i])
-    if depth < stack:
-      lines[i] = END_SEC * (stack - depth + 1) + header + START_SEC
-    elif depth == stack:
-      lines[i] = END_SEC + header + START_SEC
-    elif depth > stack:
-      lines[i] = header + START_SEC * (depth - stack)
-    stack = depth
+  lastIndex = len(lines) - 1
+  lines[lastIndex] = lines[lastIndex] + END_DIV * stack
+  return "\n".join(lines)
 
-lastIndex = len(lines) - 1
-lines[lastIndex] = lines[lastIndex] + END_SEC * stack
-
-print "\n".join(lines)
-
-def wrapHeader(text):
-  depth = headerDepth(text)
+def wrapHeader(text, depth):
   return "<h%d class='header'>%s</h%d>" % (depth, text, depth)
 
 def headerDepth(line):
@@ -62,3 +65,5 @@ def headerDepth(line):
     return 1
   else:
     return 0
+
+print addDivs(testdoc)
