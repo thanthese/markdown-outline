@@ -1,24 +1,19 @@
 ##
 # Stephen Mann Feb 2011
 #
-# This file is, by design, painfully specific to my needs. It will
-# transform ~/Dropbox/all-notes.txt into ~/Dropbox/view-notes.html. The
-# latter file will be a read only, foldable view of the former. Only
-# valid markdown files, with nicely incrementing headers, are parsed
-# correctly.
+# Transform a markdown document into an interactive, stylized, folding
+# html document.
 #
 
-# todo
-# - add spans for tags
-# - write file to output
-# - add onsave hook into vim
-# - write real comments
-
-NOTESPATH = "/home/thanthese/Dropbox/all-notes.txt"
-VIEWPATH = "/home/thanthese/Dropbox/view-notes.txt"
+import re
+import argparse
+import sys
 
 START_DIV = "<div style='display: none;'>"
 END_DIV = "</div>"
+
+START_TAG = "<b>"
+END_TAG = "</b>"
 
 def addDivs(text):
   return "\n".join(addDivsToLines(text.split("\n")))
@@ -30,8 +25,6 @@ def addDivsToLines(lines):
     if isHeader(depth):
       lines[i] = addDivOpenClose(lines[i], stack, depth)
       stack = depth
-    else:
-      lines[i] = wrapPre(lines, i)
   lines[-1] = lines[-1] + END_DIV * stack
   return lines
 
@@ -48,23 +41,14 @@ def addDivOpenClose(line, stack, depth):
     return END_DIV * (stack - depth + 1) + header + START_DIV
 
 def wrapHeader(text, depth):
-  text = stripPounds(text, depth)
   return "<h%d class='header'>%s</h%d>" % (depth, text, depth)
-
-def wrapPre(lines, index):
-  if lines[index] == "" and not nearHeader(lines, index):
-    lines[index] = "<br />"
-  return "<pre>%s</pre>" % lines[index]
 
 def nearHeader(lines, index):
   if index > 0 and isHeader(headerDepth(lines[index - 1])):
     return True
   if index < len(lines) - 1 and isHeader(headerDepth(lines[index + 1])):
     return True
-  return false
-
-def stripPounds(text, depth):
-  return text[depth + 1:]
+  return False
 
 def headerDepth(line):
   if   line[0:6] == "######":
@@ -82,4 +66,96 @@ def headerDepth(line):
   else:
     return 0
 
-print addDivs(open(NOTESPATH).read())
+def clean(text):
+  toReturn = text.replace(START_DIV + "\n", START_DIV)
+  toReturn = toReturn.replace("\n<h", "<h")
+  toReturn = toReturn.replace("\n</div>", "</div>")
+  return toReturn
+
+def markTags(text):
+  return re.sub("(:\w+)", START_TAG + "\\1" + END_TAG, text)
+
+def getArgs():
+  parser = argparse.ArgumentParser(description='Transform a markdown document into an interactive, stylized, folding html document.')
+
+  parser.add_argument('-i', '--input-file', type=argparse.FileType('r'), default=sys.stdin, help='Defauls to stdin')
+  parser.add_argument('-o', '--output-file', type=argparse.FileType('w'), default=sys.stdout, help='Defauls to stdout')
+
+  return parser.parse_args()
+
+def main():
+  args = getArgs()
+  inFile = args.input_file
+  out = args.output_file
+  out.write(htmlTemplate % markTags(clean(addDivs(inFile.read()))))
+
+htmlTemplate = """
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>View Notes</title>
+    <script src="http://code.jquery.com/jquery-1.5.1.min.js" type="text/javascript"></script>
+
+    <style type="text/css">
+
+      body {
+        background-color: #5BC7D6;
+        padding: 0.2em;
+        margin: 0.2em;
+      }
+
+      .open {
+        background-color: #F2E66E;
+        border-color: #B5A436;
+      }
+
+      h1, h2, h3, h4, h5, h6 {
+        font-family: Arial, Helvetica, Tahoma, sans-serif;
+        font-family: monospace;
+        background-color: #B5A436;
+        color: #2E3634;
+        padding: .3em;
+        margin: 0;
+        padding-left: 0.2em;
+        border-color: #F2E66E;
+        border-bottom-style: solid;
+        border-width: 1px;
+      }
+
+      h1:first-child, h2:first-child, h3:first-child, h4:first-child, h5:first-child, h6:first-child {
+        border-top-left-radius: .3em;
+      }
+
+      div {
+        padding: 0;
+        margin: 0;
+        background-color: #FFF9CC;
+        font-family: monospace;
+      }
+
+      pre {
+        padding: 0;
+        margin: 0;
+      }
+    </style>
+
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('.header').click(function() {
+          $(this).toggleClass("open")
+          $(this).next().toggle();
+        });
+      });
+    </script>
+
+</head>
+<body>
+<pre>
+%s
+</pre>
+</body>
+</html>
+"""
+
+main()
