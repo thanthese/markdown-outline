@@ -4,6 +4,8 @@
 # Transform a markdown document into an interactive, stylized, folding
 # html document.
 #
+# Requires python 2.7
+#
 
 import re
 import argparse
