@@ -1,5 +1,6 @@
 ##
-# Stephen Mann Feb 2011
+# Stephen Mann
+# Feb 2011
 #
 # Transform a markdown document into an interactive, stylized, folding
 # html document.
