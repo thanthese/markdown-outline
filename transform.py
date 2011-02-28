@@ -15,58 +15,78 @@ END_DIV = "</div>"
 START_TAG = "<b>"
 END_TAG = "</b>"
 
-def addDivs(text):
-  return "\n".join(addDivsToLines(text.split("\n")))
+class Line:
 
-def addDivsToLines(lines):
+  def __init__(self, text):
+    self.text = text
+    self.depth = self._calcHeaderDepth()
+
+  def getText(self):
+    return self.text
+
+  def getHeaderDepth(self):
+    return self.depth
+
+  def _calcHeaderDepth(self):
+    if   self.text[0:6] == "######":
+      return 6
+    elif self.text[0:5] == "#####":
+      return 5
+    elif self.text[0:4] == "####":
+      return 4
+    elif self.text[0:3] == "###":
+      return 3
+    elif self.text[0:2] == "##":
+      return 2
+    elif self.text[0:1] == "#":
+      return 1
+    else:
+      return 0
+
+  def isHeader(self):
+    return self.getHeaderDepth() > 0
+
+  def treatHeader(self, stack):
+    self._wrapHeader()
+    self._addDivOpenClose(stack)
+
+  def _wrapHeader(self):
+    depth = self.getHeaderDepth()
+    if(depth > 0):
+      self.text = "<h%d class='header'>%s</h%d>" % (depth, self.text, depth)
+
+  def _addDivOpenClose(self, stack):
+    depth = self.getHeaderDepth()
+    if depth > stack:
+      self.text = self.text + START_DIV
+    elif depth == stack:
+      self.text = END_DIV + self.text + START_DIV
+    elif depth < stack:
+      self.text = END_DIV * (stack - depth + 1) + self.text + START_DIV
+
+  def closeRemainingDivs(self, stack):
+    self.text = self.text + END_DIV * stack
+
+def splitIntoLines(text):
+  buildLine = lambda line: Line(line)
+  lines = text.split("\n")
+  return map(buildLine, lines)
+
+def combineLinesIntoText(lines):
+  getText = lambda line: line.getText()
+  return "\n".join(map(getText, lines))
+
+def addDivs(text):
+  lines = splitIntoLines(text)
   stack = 0
   for i in range(0, len(lines)):
-    depth = headerDepth(lines[i])
-    if isHeader(depth):
-      lines[i] = addDivOpenClose(lines[i], stack, depth)
-      stack = depth
-  lines[-1] = lines[-1] + END_DIV * stack
-  return lines
+    if lines[i].isHeader():
+      lines[i].treatHeader(stack)
+      stack = lines[i].getHeaderDepth()
+  lines[-1].closeRemainingDivs(stack)
+  return combineLinesIntoText(lines)
 
-def isHeader(depth):
-  return depth > 0
-
-def addDivOpenClose(line, stack, depth):
-  header = wrapHeader(line, depth)
-  if depth > stack:
-    return header + START_DIV
-  elif depth == stack:
-    return END_DIV + header + START_DIV
-  elif depth < stack:
-    return END_DIV * (stack - depth + 1) + header + START_DIV
-
-def wrapHeader(text, depth):
-  return "<h%d class='header'>%s</h%d>" % (depth, text, depth)
-
-def nearHeader(lines, index):
-  if index > 0 and isHeader(headerDepth(lines[index - 1])):
-    return True
-  if index < len(lines) - 1 and isHeader(headerDepth(lines[index + 1])):
-    return True
-  return False
-
-def headerDepth(line):
-  if   line[0:6] == "######":
-    return 6
-  elif line[0:5] == "#####":
-    return 5
-  elif line[0:4] == "####":
-    return 4
-  elif line[0:3] == "###":
-    return 3
-  elif line[0:2] == "##":
-    return 2
-  elif line[0:1] == "#":
-    return 1
-  else:
-    return 0
-
-def clean(text):
+def removeExtraCarriageReturns(text):
   toReturn = text.replace(START_DIV + "\n", START_DIV)
   toReturn = toReturn.replace("\n<h", "<h")
   toReturn = toReturn.replace("\n</div>", "</div>")
@@ -86,8 +106,15 @@ def getArgs():
 def main():
   args = getArgs()
   inFile = args.input_file
-  out = args.output_file
-  out.write(htmlTemplate % markTags(clean(addDivs(inFile.read()))))
+  outFile = args.output_file
+
+  text = inFile.read()
+  text = addDivs(text)
+  text = removeExtraCarriageReturns(text)
+  text = markTags(text)
+  text = htmlTemplate % text
+
+  outFile.write(text)
 
 htmlTemplate = """
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
