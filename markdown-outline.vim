@@ -38,25 +38,25 @@ au bufwrite *.md,all-notes.txt g/\S\n^\W*# /norm o
 " Created by Jeromy Anglim
 "     (source: http://stackoverflow.com/questions/3828606/vim-markdown-folding)
 function! MarkdownLevel()
-    if getline(v:lnum) =~ '^[ */"]*# .*$'
+    if getline(v:lnum) =~ '^[ */;"]*# .*$'
         return ">1"
     endif
-    if getline(v:lnum) =~ '^[ */"]*## .*$'
+    if getline(v:lnum) =~ '^[ */;"]*## .*$'
         return ">2"
     endif
-    if getline(v:lnum) =~ '^[ */"]*### .*$'
+    if getline(v:lnum) =~ '^[ */;"]*### .*$'
         return ">3"
     endif
-    if getline(v:lnum) =~ '^[ */"]*#### .*$'
+    if getline(v:lnum) =~ '^[ */;"]*#### .*$'
         return ">4"
     endif
-    if getline(v:lnum) =~ '^[ */"]*##### .*$'
+    if getline(v:lnum) =~ '^[ */;"]*##### .*$'
         return ">5"
     endif
-    if getline(v:lnum) =~ '^[ */"]*###### .*$'
+    if getline(v:lnum) =~ '^[ */;"]*###### .*$'
         return ">6"
     endif
     return "="
 endfunction
-au BufEnter *.md,all-notes.txt,coreVimrc.vim setlocal foldexpr=MarkdownLevel()
-au BufEnter *.md,all-notes.txt,coreVimrc.vim setlocal foldmethod=expr
+au BufEnter *.md,*.clj,*.vim setlocal foldexpr=MarkdownLevel()
+au BufEnter *.md,*.clj,*.vim setlocal foldmethod=expr
