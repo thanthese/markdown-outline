@@ -58,5 +58,5 @@ function! MarkdownLevel()
     endif
     return "="
 endfunction
-au BufEnter *.md,*.clj,*.vim setlocal foldexpr=MarkdownLevel()
-au BufEnter *.md,*.clj,*.vim setlocal foldmethod=expr
+au BufEnter *.md,*.clj,*.vim,all-notes.txt setlocal foldexpr=MarkdownLevel()
+au BufEnter *.md,*.clj,*.vim,all-notes.txt setlocal foldmethod=expr
