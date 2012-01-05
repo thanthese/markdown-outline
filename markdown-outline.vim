@@ -28,7 +28,7 @@ au BufRead,BufNewFile *.md,all-notes.txt hi def link markdownTag Special
 
 " syntax: shy dates (gray-out anything in "[]"s)
 au BufRead,BufNewFile *.md,all-notes.txt hi shyDate guifg=#555555 ctermfg=DarkGray
-au BufRead,BufNewFile *.md,all-notes.txt syn match shyDate /\[.*\]/
+au BufRead,BufNewFile *.md,all-notes.txt syn match shyDate /\[.\{-}\]/
 
 " syntax: drawer (conceal and highlight in "{}"s)
 if has('conceal')
