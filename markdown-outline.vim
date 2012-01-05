@@ -23,7 +23,7 @@ au BufRead,BufNewFile *.md,all-notes.txt hi shyDate guifg=#555555 ctermfg=DarkGr
 au BufRead,BufNewFile *.md,all-notes.txt syn match shyDate /\[.*\]/
 
 " syntax: tags (highlight anything after a :)
-au BufRead,BufNewFile *.md,all-notes.txt syn match markdownTag "\(^\| \):[^ ]\+ "
+au BufRead,BufNewFile *.md,all-notes.txt syn match markdownTag "\(^\| \):[^ ]\+"
 au BufRead,BufNewFile *.md,all-notes.txt hi def link markdownTag Special
 
 " Provide "forced validation" of headers on save.
