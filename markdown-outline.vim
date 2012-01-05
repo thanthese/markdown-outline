@@ -7,15 +7,24 @@
 " Goals: as few features and mappings as I can live with.
 "
 
-" create "toggle fold" shortcut
+" create "toggle fold" shortcuts
 nmap <Tab> za
 nmap <S-Tab> zA
 
 " simplify text displayed on fold
+set fillchars="fold: "
 set foldtext=GetFoldText()
 function! GetFoldText()
-  return getline(v:foldstart) . "  "
+  return getline(v:foldstart)
 endfunction
+
+" syntax: shy dates (gray-out anything in []s)
+au BufRead,BufNewFile *.md,all-notes.txt hi shyDate guifg=#555555 ctermfg=DarkGray
+au BufRead,BufNewFile *.md,all-notes.txt syn match shyDate /\[.*\]/
+
+" syntax: tags (highlight anything after a :)
+au BufRead,BufNewFile *.md,all-notes.txt syn match markdownTag "\(^\| \):[^ ]\+ "
+au BufRead,BufNewFile *.md,all-notes.txt hi def link markdownTag Special
 
 " Provide "forced validation" of headers on save.
 "
@@ -58,5 +67,5 @@ function! MarkdownLevel()
     endif
     return "="
 endfunction
-au BufEnter *.md,*.clj,*.vim,all-notes.txt setlocal foldexpr=MarkdownLevel()
-au BufEnter *.md,*.clj,*.vim,all-notes.txt setlocal foldmethod=expr
+au BufEnter *.md,*.vim,all-notes.txt setlocal foldexpr=MarkdownLevel()
+au BufEnter *.md,*.vim,all-notes.txt setlocal foldmethod=expr
