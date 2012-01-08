@@ -23,7 +23,11 @@ function! GetFoldText()
 endfunction
 
 " syntax: tags (highlight anything after a ":")
-au BufRead,BufNewFile *.md,all-notes.txt syn match markdownTag "\(^\| \):[^ ]\+"
+au BufRead,BufNewFile *.md,all-notes.txt syn match markdownTag "\(^\| \):[^: ]\+"
+
+" syntax: super-bold anything after "::"
+au BufRead,BufNewFile *.md,all-notes.txt hi appt guifg=#00FF00 ctermfg=Green
+au BufRead,BufNewFile *.md,all-notes.txt syn match appt /\(^\| \)::[^ ]\+/
 au BufRead,BufNewFile *.md,all-notes.txt hi def link markdownTag Special
 
 " syntax: shy dates (gray-out anything in "[]"s)
