@@ -34,14 +34,6 @@ au BufRead,BufNewFile *.md,all-notes.txt hi def link markdownTag Special
 au BufRead,BufNewFile *.md,all-notes.txt hi shyDate guifg=#555555 ctermfg=DarkGray
 au BufRead,BufNewFile *.md,all-notes.txt syn match shyDate /\[.\{-}\]/
 
-" syntax: drawer (conceal and highlight in "{}"s)
-if has('conceal')
-  au BufEnter all-notes.txt syntax match Drawer "{.*}" conceal cchar=…
-  au BufEnter all-notes.txt hi! Drawer  guifg=#5555FF ctermfg=Blue
-  au BufEnter all-notes.txt hi! Conceal guifg=#5555FF ctermfg=Blue guibg=Black
-  au BufEnter all-notes.txt setlocal concealcursor=""
-endif
-
 " Provide "forced validation" of headers on save.
 "
 " There are two conditions.
