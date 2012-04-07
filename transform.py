@@ -145,7 +145,7 @@ htmlTemplate = """
         font-family: monospace;
         background-color: #B5A436;
         color: #2E3634;
-        padding: .3em;
+        padding: .8em;
         margin: 0;
         padding-left: 0.2em;
         border-color: #F2E66E;
