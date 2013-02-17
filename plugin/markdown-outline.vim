@@ -12,8 +12,8 @@ nmap <Tab> za
 nmap <S-Tab> zA
 
 " scroll by headers
-au BufRead,BufNewFile all-notes.txt map <buffer> <c-j> /^#<cr>
-au BufRead,BufNewFile all-notes.txt map <buffer> <c-k> ?^#<cr>
+au BufRead,BufNewFile *.md,*.clj,*.vim map <buffer> <c-j> /^#<cr>
+au BufRead,BufNewFile *.md,*.clj,*.vim map <buffer> <c-k> ?^#<cr>
 
 " simplify text displayed on fold
 set fillchars="fold: "
@@ -23,16 +23,16 @@ function! GetFoldText()
 endfunction
 
 " syntax: tags (highlight anything after a ":")
-au BufRead,BufNewFile *.md,all-notes.txt syn match markdownTag "\(^\| \):[^: ]\+"
+au BufRead,BufNewFile *.md,*.clj,*.vim syn match markdownTag "\(^\| \):[^: ]\+"
 
 " syntax: super-bold anything after "::"
-au BufRead,BufNewFile *.md,all-notes.txt hi appt guifg=#00FF00 ctermfg=Green
-au BufRead,BufNewFile *.md,all-notes.txt syn match appt /\(^\| \)::[^ ]\+/
-au BufRead,BufNewFile *.md,all-notes.txt hi def link markdownTag Special
+au BufRead,BufNewFile *.md,*.clj,*.vim hi appt guifg=#00FF00 ctermfg=Green
+au BufRead,BufNewFile *.md,*.clj,*.vim syn match appt /\(^\| \)::[^ ]\+/
+au BufRead,BufNewFile *.md,*.clj,*.vim hi def link markdownTag Special
 
 " syntax: shy dates (gray-out anything in "[]"s)
-au BufRead,BufNewFile *.md,all-notes.txt hi shyDate guifg=#555555 ctermfg=DarkGray
-au BufRead,BufNewFile *.md,all-notes.txt syn match shyDate /\[.\{-}\]/
+au BufRead,BufNewFile *.md,*.clj,*.vim hi shyDate guifg=#555555 ctermfg=DarkGray
+au BufRead,BufNewFile *.md,*.clj,*.vim syn match shyDate /\[.\{-}\]/
 
 " Provide "forced validation" of headers on save.
 "
@@ -47,8 +47,8 @@ au BufRead,BufNewFile *.md,all-notes.txt syn match shyDate /\[.\{-}\]/
 "
 " Note: backslashes had to be doubly escaped.
 "
-au bufwrite *.md,all-notes.txt %s/^\s*$\n\(^\s*$\n\)\+\(\W*#.*\)/\r\2/e
-au bufwrite *.md,all-notes.txt g/\S\n^\W*# /norm o
+au bufwrite *.md,*.clj,*.vim %s/^\s*$\n\(^\s*$\n\)\+\(\W*#.*\)/\r\2/e
+au bufwrite *.md,*.clj,*.vim g/\S\n^\W*# /norm o
 
 " Set the fold levels based on headers.
 "
